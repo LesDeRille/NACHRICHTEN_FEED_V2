@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tagesschau</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <!-- weitere Kopfinformationen -->
+    <!-- Kommentare werden im Browser nicht angezeigt. -->
+</head>
+
+<body>
+    <p>Tagesschau</p>
+    <script>
+
+        async function urlLesen() {
+            let url = 'https://www.tagesschau.de/api2u/news/?regions=1&ressort=ausland';
+            // console.log(url)
+            let response = await fetch(url);
+            let commits = await response.json(); // read response body and parse as JSON
+            // console.log("commits", commits.news);
+            return commits.news
+        }
+        async function meldungenLesen() {
+            let inhalt = await urlLesen();
+            // console.log("inhalt", inhalt)
+            meldungenVerarbeiten(inhalt)
+        }
+
+        function meldungenVerarbeiten(inhalt) {
+            console.log(inhalt);
+            for (meldung of inhalt) {
+                console.log(meldung.title)
+                console.log(meldung.firstSentence)
+            }
+        }
+
+        meldungenLesen()
+    </script>
+</body>
+
+</html>
