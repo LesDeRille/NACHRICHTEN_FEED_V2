@@ -14,16 +14,9 @@
 
         async function urlLesen() {
             let url = 'https://www.tagesschau.de/api2u/news/?regions=1&ressort=ausland';
-            // console.log(url)
             let response = await fetch(url);
             let commits = await response.json(); // read response body and parse as JSON
-            // console.log("commits", commits.news);
-            return commits.news
-        }
-        async function meldungenLesen() {
-            let inhalt = await urlLesen();
-            // console.log("inhalt", inhalt)
-            meldungenVerarbeiten(inhalt)
+            meldungenVerarbeiten(commits.news)
         }
 
         function meldungenVerarbeiten(inhalt) {
@@ -36,7 +29,7 @@
             }
         }
 
-        meldungenLesen()
+        urlLesen();
     </script>
 </body>
 
