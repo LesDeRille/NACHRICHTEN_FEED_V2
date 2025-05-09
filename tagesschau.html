@@ -28,17 +28,14 @@
         }
 
         function meldungenVerarbeiten(inhalt) {
-            console.log(inhalt);
             for (meldung of inhalt) {
-                // console.log(meldung.tags)
-                // console.log(meldung.date + " " + meldung.title)
-                // console.log(meldung.firstSentence)
                 neueSchlagzeileErzeugen(meldung);
             }
         }
 
         function neueSchlagzeileErzeugen(meldung) {
-            const schlagzeilen = document.getElementById("Schlagzeilen");
+
+            let schlagzeilen = document.getElementById("Schlagzeilen");
             let neuerTitel = document.createElement("dt");
             let neueErsteZeile = document.createElement("dd");
             let neuerAnker = document.createElement("a");
@@ -56,19 +53,20 @@
         }
 
         function buttonFunktion() {
-            function ressortauswahl() {
-                let ressort = inland.value;
-                console.log("ressort", ressort)
-                urlLesen(ressort);
-            }
+
             let inland = document.getElementById("inland");
             let ausland = document.getElementById("ausland");
             let wirtschaft = document.getElementById("wirtschaft");
-            console.log(inland.value)
-            
-            inland.addEventListener("click", ressortauswahl)
-            
 
+            inland.addEventListener("click", () => {
+                urlLesen("inland")
+            });
+            ausland.addEventListener("click", () => {
+                urlLesen("ausland")
+            });
+            wirtschaft.addEventListener("click", () => {
+                urlLesen("wirtschaft")
+            });
         }
 
         buttonFunktion()
