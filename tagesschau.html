@@ -9,7 +9,11 @@
 </head>
 
 <body>
-    <p>Tagesschau</p>
+    <h2>Tagesschau</h2>
+    <dl id="Schlagzeilen">
+        <!-- <dt>Beast of Bodmin</dt>
+        <dd>A large feline inhabiting Bodmin Moor.</dd> -->
+    </dl>
     <script>
 
         async function urlLesen() {
@@ -22,11 +26,29 @@
         function meldungenVerarbeiten(inhalt) {
             console.log(inhalt);
             for (meldung of inhalt) {
-                console.log(meldung.tags)
-                console.log(meldung.date + " " + meldung.title)
-                console.log(meldung.firstSentence)
-                
+                // console.log(meldung.tags)
+                // console.log(meldung.date + " " + meldung.title)
+                // console.log(meldung.firstSentence)
+                neueSchlagzeileErzeugen(meldung);
             }
+        }
+
+        function neueSchlagzeileErzeugen(meldung) {
+            const schlagzeilen = document.getElementById("Schlagzeilen");
+            let neuerTitel = document.createElement("dt");
+            let neueErsteZeile = document.createElement("dd");
+            let neuerAnker = document.createElement("a");
+            let leerzeile = document.createElement("p")
+            console.log("neue", meldung.title)
+            neueErsteZeile.textContent = meldung.firstSentence;
+            neuerAnker.href = meldung.detailsweb;
+            neuerAnker.textContent = meldung.title;
+
+            neuerTitel.appendChild(neuerAnker);
+
+            schlagzeilen.appendChild(neuerTitel)
+            schlagzeilen.appendChild(neueErsteZeile);
+            schlagzeilen.appendChild(leerzeile);
         }
 
         urlLesen();
