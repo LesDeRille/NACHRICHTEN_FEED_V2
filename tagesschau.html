@@ -10,14 +10,18 @@
 
 <body>
     <h2>Tagesschau</h2>
+    <input id="ausland" type="button" value="ausland" />
+    <input id="inland" type="button" value="inland" />
+    <input id="wirtschaft" type="button" value="wirtschaft" />
+
     <dl id="Schlagzeilen">
         <!-- <dt>Beast of Bodmin</dt>
         <dd>A large feline inhabiting Bodmin Moor.</dd> -->
     </dl>
     <script>
 
-        async function urlLesen() {
-            let url = 'https://www.tagesschau.de/api2u/news/?regions=1&ressort=ausland';
+        async function urlLesen(ressort) {
+            let url = 'https://www.tagesschau.de/api2u/news/?ressort=' + ressort;
             let response = await fetch(url);
             let commits = await response.json(); // read response body and parse as JSON
             meldungenVerarbeiten(commits.news)
@@ -39,7 +43,7 @@
             let neueErsteZeile = document.createElement("dd");
             let neuerAnker = document.createElement("a");
             let leerzeile = document.createElement("p")
-            console.log("neue", meldung.title)
+            //console.log("neue", meldung.title)
             neueErsteZeile.textContent = meldung.firstSentence;
             neuerAnker.href = meldung.detailsweb;
             neuerAnker.textContent = meldung.title;
@@ -51,7 +55,24 @@
             schlagzeilen.appendChild(leerzeile);
         }
 
-        urlLesen();
+        function buttonFunktion() {
+            function ressortauswahl() {
+                let ressort = inland.value;
+                console.log("ressort", ressort)
+                urlLesen(ressort);
+            }
+            let inland = document.getElementById("inland");
+            let ausland = document.getElementById("ausland");
+            let wirtschaft = document.getElementById("wirtschaft");
+            console.log(inland.value)
+            
+            inland.addEventListener("click", ressortauswahl)
+            
+
+        }
+
+        buttonFunktion()
+
     </script>
 </body>
 
