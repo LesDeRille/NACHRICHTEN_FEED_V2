@@ -13,6 +13,9 @@
     <input id="ausland" type="button" value="ausland" />
     <input id="inland" type="button" value="inland" />
     <input id="wirtschaft" type="button" value="wirtschaft" />
+    <input id="sport" type="button" value="sport" />
+    <input id="investigativ" type="button" value="investigativ" />
+    <input id="wissen" type="button" value="wissen" />
 
     <dl id="Schlagzeilen">
         <!-- <dt>Beast of Bodmin</dt>
@@ -57,6 +60,9 @@
             let inland = document.getElementById("inland");
             let ausland = document.getElementById("ausland");
             let wirtschaft = document.getElementById("wirtschaft");
+            let sport = document.getElementById("sport");
+            let investigativ = document.getElementById("investigativ");
+            let wissen = document.getElementById("wissen");
             
             function bisherigeSchlagzeilenLoeschen() {
                 const schlag = document.getElementById("Schlagzeilen");
@@ -75,6 +81,18 @@
             wirtschaft.addEventListener("click", () => {
                 bisherigeSchlagzeilenLoeschen();
                 urlLesen("wirtschaft")
+            });
+            sport.addEventListener("click", () => {
+                bisherigeSchlagzeilenLoeschen();
+                urlLesen("sport")
+            });
+            investigativ.addEventListener("click", () => {
+                bisherigeSchlagzeilenLoeschen();
+                urlLesen("investigativ")
+            });
+            wissen.addEventListener("click", () => {
+                bisherigeSchlagzeilenLoeschen();
+                urlLesen("wissen")
             });
         }
 
