@@ -1,6 +1,21 @@
 ## Änderungshistorie
 
 #
+### tagesschau_2025_05_10_V05
+
+#### Basis: tagesschau_2025_05_10_V04
+
+#### Änderung:
+* Ressort wird unter dem Titel angezeigt
+
+#### ToDo:
+* Optisch aufbereiten
+* gelesene markieren
+* wäre es nicht besser, erst alles runterzuladen und dann nach dem Ressort zu filtern?
+* Ressortanzeige ist nicht schön programmiert
+* Rossortauswahl ist nicht schön programmiert
+
+#
 ### tagesschau_2025_05_10_V04
 
 #### Basis: tagesschau_2025_05_10_V03
