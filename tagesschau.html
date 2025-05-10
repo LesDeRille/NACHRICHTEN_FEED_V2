@@ -8,6 +8,13 @@
     <!-- Kommentare werden im Browser nicht angezeigt. -->
 </head>
 
+<style>
+  a {
+    color: #0060B6;
+    text-decoration: none;
+}
+</style>
+
 <body>
     <h2>Tagesschau</h2>
     <input id="ausland" type="button" value="ausland" />
@@ -47,7 +54,7 @@
             //console.log("neue", meldung.title)
             neueErsteZeile.textContent = meldung.firstSentence;
             neuerAnker.href = meldung.detailsweb;
-            neuerAnker.textContent = meldung.title;
+            neuerAnker.textContent = meldung.title + ", vom " + (new Date(meldung.date)).toLocaleString();
 
             neuerTitel.appendChild(neuerAnker);
 
