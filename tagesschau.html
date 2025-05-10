@@ -30,14 +30,15 @@
             meldungenVerarbeiten(commits.news)
         }
 
+
         function meldungenVerarbeiten(inhalt) {
+            inhalt.sort((a, b) => new Date(b.date) - new Date(a.date))
             for (meldung of inhalt) {
                 neueSchlagzeileErzeugen(meldung);
             }
         }
 
         function neueSchlagzeileErzeugen(meldung) {
-
             let schlagzeilen = document.getElementById("Schlagzeilen");
             let neuerTitel = document.createElement("dt");
             let neueErsteZeile = document.createElement("dd");
@@ -56,14 +57,13 @@
         }
 
         function buttonFunktion() {
-
             let inland = document.getElementById("inland");
             let ausland = document.getElementById("ausland");
             let wirtschaft = document.getElementById("wirtschaft");
             let sport = document.getElementById("sport");
             let investigativ = document.getElementById("investigativ");
             let wissen = document.getElementById("wissen");
-            
+
             function bisherigeSchlagzeilenLoeschen() {
                 const schlag = document.getElementById("Schlagzeilen");
                 while (schlag.firstChild) {
@@ -95,7 +95,7 @@
                 urlLesen("wissen")
             });
         }
-
+        urlLesen("sport")
         buttonFunktion()
 
     </script>
