@@ -19,6 +19,7 @@
     <h2>Tagesschau</h2>
     <h3>Ressort</h3>
     <input id="ausland" type="button" value="ausland" />
+    <button id="buttAusland">Ausland</button>
     <input id="inland" type="button" value="inland" />
     <input id="wirtschaft" type="button" value="wirtschaft" />
     <input id="sport" type="button" value="sport" />
@@ -71,7 +72,12 @@
             let sport = document.getElementById("sport");
             let investigativ = document.getElementById("investigativ");
             let wissen = document.getElementById("wissen");
-            
+            let buttonAusland = document.getElementById("buttAusland")
+            buttonAusland.addEventListener("click", () => {
+                bisherigeSchlagzeilenLoeschen();
+                gewaehltesRessort[0].textContent = ausland.value
+                urlLesen("ausland")
+            })
             
 
             function bisherigeSchlagzeilenLoeschen() {
