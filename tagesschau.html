@@ -57,14 +57,23 @@
             let inland = document.getElementById("inland");
             let ausland = document.getElementById("ausland");
             let wirtschaft = document.getElementById("wirtschaft");
-
+            
+            function bisherigeSchlagzeilenLoeschen() {
+                const schlag = document.getElementById("Schlagzeilen");
+                while (schlag.firstChild) {
+                    schlag.removeChild(schlag.firstChild);
+                }
+            }
             inland.addEventListener("click", () => {
+                bisherigeSchlagzeilenLoeschen();
                 urlLesen("inland")
             });
             ausland.addEventListener("click", () => {
+                bisherigeSchlagzeilenLoeschen();
                 urlLesen("ausland")
             });
             wirtschaft.addEventListener("click", () => {
+                bisherigeSchlagzeilenLoeschen();
                 urlLesen("wirtschaft")
             });
         }
