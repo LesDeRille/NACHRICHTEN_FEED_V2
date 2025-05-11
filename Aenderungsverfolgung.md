@@ -1,6 +1,27 @@
 ## Änderungshistorie
 
 #
+### tagesschau_2025_05_11_V02
+
+#### Basis: tagesschau_2025_05_11_V01
+
+#### Änderung:
+* Erster Buchstabe auf den Ressortknöpfen groß geschrieben
+* Datum nicht mehr Teil des Links
+* Schlagzeilen größer
+* Statt Leerzeilen zwischen den Schlagzeilen kommt jetzt ein horizontaler Strich
+
+#### ToDo:
+* Optisch aufbereiten
+* gelesene markieren
+* wäre es nicht besser, erst alles runterzuladen und dann nach dem Ressort zu filtern?
+* Ressortanzeige ist nicht schön programmiert
+    * Ressorts ausslesen und dann die entsprechenden Knöpfe erzeugen --> Ressort steht nicht im json, geht also nicht
+* Tags anzeigen, evt Blacklist davon erstellen. Statt tags Symbole, z.B. Nationalflaggen?
+* Refresh-Knopf (oder einfach neu laden?)
+* 
+
+#
 ### tagesschau_2025_05_11_V01
 
 #### Basis: tagesschau_2025_05_10_V06

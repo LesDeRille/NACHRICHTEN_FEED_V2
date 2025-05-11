@@ -12,21 +12,17 @@
     a {
         color: #0060B6;
         text-decoration: none;
+        font-weight: bold;
+        font-size: 120%;
     }
 </style>
 
 <body>
     <h2>Tagesschau</h2>
     <h3>Sport</h3>
+
     <div id="ressorts">
     </div>
-    <!-- <input id="ausland" type="button" value="ausland" />
-    <button id="buttAusland">Ausland</button>
-    <input id="inland" type="button" value="inland" />
-    <input id="wirtschaft" type="button" value="wirtschaft" />
-    <input id="sport" type="button" value="sport" />
-    <input id="investigativ" type="button" value="investigativ" />
-    <input id="wissen" type="button" value="wissen" /> -->
 
     <dl id="Schlagzeilen">
         <!-- <dt>Beast of Bodmin</dt>
@@ -54,13 +50,15 @@
             let neuerTitel = document.createElement("dt");
             let neueErsteZeile = document.createElement("dd");
             let neuerAnker = document.createElement("a");
-            let leerzeile = document.createElement("p")
-            //console.log("neue", meldung.title)
+            let leerzeile = document.createElement("hr");
+            let datum = document.createElement("span");
             neueErsteZeile.textContent = meldung.firstSentence;
             neuerAnker.href = meldung.detailsweb;
-            neuerAnker.textContent = meldung.title + ", vom " + (new Date(meldung.date)).toLocaleString();
+            datum.textContent = "   " + (new Date(meldung.date)).toLocaleString();
+            neuerAnker.textContent = meldung.title
 
             neuerTitel.appendChild(neuerAnker);
+            neuerTitel.appendChild(datum)
 
             schlagzeilen.appendChild(neuerTitel)
             schlagzeilen.appendChild(neueErsteZeile);
@@ -69,7 +67,7 @@
 
         function buttonsErzeugen() {
             let gewaehltesRessort = document.getElementsByTagName("h3");
-            let ressorts = ["sport", "wissen", "ausland", "wirtschaft", "sport", "investigativ"];
+            let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
             let knopfPosition = document.getElementById("ressorts");
 
             function bisherigeSchlagzeilenLoeschen() {
@@ -84,7 +82,6 @@
                 knopf.textContent = ressort
                 knopfPosition.appendChild(knopf)
                 knopf.addEventListener("click", () => {
-                    // console.log(knopf.textContent)
                     gewaehltesRessort[0].textContent = knopf.textContent
                     bisherigeSchlagzeilenLoeschen();
                     urlLesen(knopf.textContent)
@@ -92,66 +89,10 @@
             }
         }
 
-        function buttonFunktion() {
-            // let inland = document.getElementById("inland");
-            // let ausland = document.getElementById("ausland");
-            // let wirtschaft = document.getElementById("wirtschaft");
-            // let sport = document.getElementById("sport");
-            // let investigativ = document.getElementById("investigativ");
-            // let wissen = document.getElementById("wissen");
-            // let buttonAusland = document.getElementById("buttAusland")
-            // buttonAusland.addEventListener("click", () => {
-            //     bisherigeSchlagzeilenLoeschen();
-            //     gewaehltesRessort[0].textContent = ausland.value
-            //     urlLesen("ausland")
-            // })
-
-
-            function bisherigeSchlagzeilenLoeschen() {
-                const schlag = document.getElementById("Schlagzeilen");
-                while (schlag.firstChild) {
-                    schlag.removeChild(schlag.firstChild);
-                }
-            }
-            // inland.addEventListener("click", () => {
-            //     bisherigeSchlagzeilenLoeschen();
-            //     //alert(inland.value)
-            //     gewaehltesRessort[0].textContent = inland.value
-            //     urlLesen("inland")
-            // });
-            // ausland.addEventListener("click", () => {
-            //     bisherigeSchlagzeilenLoeschen();
-            //     gewaehltesRessort[0].textContent = ausland.value
-            //     urlLesen("ausland")
-            // });
-            // wirtschaft.addEventListener("click", () => {
-            //     bisherigeSchlagzeilenLoeschen();
-            //     gewaehltesRessort[0].textContent = wirtschaft.value
-            //     urlLesen("wirtschaft")
-            // });
-            // sport.addEventListener("click", () => {
-            //     bisherigeSchlagzeilenLoeschen();
-            //     gewaehltesRessort[0].textContent = sport.value
-            //     urlLesen("sport")
-            // });
-            // investigativ.addEventListener("click", () => {
-            //     bisherigeSchlagzeilenLoeschen();
-            //     gewaehltesRessort[0].textContent = investigativ.value
-            //     urlLesen("investigativ")
-            // });
-            // wissen.addEventListener("click", () => {
-            //     bisherigeSchlagzeilenLoeschen();
-            //     gewaehltesRessort[0].textContent = wissen.value
-            //     urlLesen("wissen")
-            // });
-        }
 
         // Programmsteuerung
-        // let gewaehltesRessort = document.getElementsByTagName("h3");
-        // gewaehltesRessort[0].textContent = "sport";
-        buttonsErzeugen();
         urlLesen("sport")
-        // buttonFunktion()
+        buttonsErzeugen();
 
     </script>
 </body>
