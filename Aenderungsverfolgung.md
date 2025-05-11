@@ -1,6 +1,23 @@
 ## Änderungshistorie
 
 #
+### tagesschau_2025_05_11_V01
+
+#### Basis: tagesschau_2025_05_10_V06
+
+#### Änderung:
+* Knöpfe werden jetzt generiert
+
+#### ToDo:
+* Optisch aufbereiten
+* gelesene markieren
+* wäre es nicht besser, erst alles runterzuladen und dann nach dem Ressort zu filtern?
+* Ressortanzeige ist nicht schön programmiert
+    * Ressorts ausslesen und dann die entsprechenden Knöpfe erzeugen
+* Tags anzeigen, evt Blacklist davon erstellen
+* Refresh-Knopf (oder einfach neu laden?)
+
+#
 ### tagesschau_2025_05_10_V06
 
 #### Basis: tagesschau_2025_05_10_V05

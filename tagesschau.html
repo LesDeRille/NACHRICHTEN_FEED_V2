@@ -9,22 +9,24 @@
 </head>
 
 <style>
-  a {
-    color: #0060B6;
-    text-decoration: none;
-}
+    a {
+        color: #0060B6;
+        text-decoration: none;
+    }
 </style>
 
 <body>
     <h2>Tagesschau</h2>
-    <h3>Ressort</h3>
-    <input id="ausland" type="button" value="ausland" />
+    <h3>Sport</h3>
+    <div id="ressorts">
+    </div>
+    <!-- <input id="ausland" type="button" value="ausland" />
     <button id="buttAusland">Ausland</button>
     <input id="inland" type="button" value="inland" />
     <input id="wirtschaft" type="button" value="wirtschaft" />
     <input id="sport" type="button" value="sport" />
     <input id="investigativ" type="button" value="investigativ" />
-    <input id="wissen" type="button" value="wissen" />
+    <input id="wissen" type="button" value="wissen" /> -->
 
     <dl id="Schlagzeilen">
         <!-- <dt>Beast of Bodmin</dt>
@@ -65,20 +67,10 @@
             schlagzeilen.appendChild(leerzeile);
         }
 
-        function buttonFunktion() {
-            let inland = document.getElementById("inland");
-            let ausland = document.getElementById("ausland");
-            let wirtschaft = document.getElementById("wirtschaft");
-            let sport = document.getElementById("sport");
-            let investigativ = document.getElementById("investigativ");
-            let wissen = document.getElementById("wissen");
-            let buttonAusland = document.getElementById("buttAusland")
-            buttonAusland.addEventListener("click", () => {
-                bisherigeSchlagzeilenLoeschen();
-                gewaehltesRessort[0].textContent = ausland.value
-                urlLesen("ausland")
-            })
-            
+        function buttonsErzeugen() {
+            let gewaehltesRessort = document.getElementsByTagName("h3");
+            let ressorts = ["sport", "wissen", "ausland", "wirtschaft", "sport", "investigativ"];
+            let knopfPosition = document.getElementById("ressorts");
 
             function bisherigeSchlagzeilenLoeschen() {
                 const schlag = document.getElementById("Schlagzeilen");
@@ -86,42 +78,80 @@
                     schlag.removeChild(schlag.firstChild);
                 }
             }
-            inland.addEventListener("click", () => {
-                bisherigeSchlagzeilenLoeschen();
-                //alert(inland.value)
-                gewaehltesRessort[0].textContent = inland.value
-                urlLesen("inland")
-            });
-            ausland.addEventListener("click", () => {
-                bisherigeSchlagzeilenLoeschen();
-                gewaehltesRessort[0].textContent = ausland.value
-                urlLesen("ausland")
-            });
-            wirtschaft.addEventListener("click", () => {
-                bisherigeSchlagzeilenLoeschen();
-                gewaehltesRessort[0].textContent = wirtschaft.value
-                urlLesen("wirtschaft")
-            });
-            sport.addEventListener("click", () => {
-                bisherigeSchlagzeilenLoeschen();
-                gewaehltesRessort[0].textContent = sport.value
-                urlLesen("sport")
-            });
-            investigativ.addEventListener("click", () => {
-                bisherigeSchlagzeilenLoeschen();
-                gewaehltesRessort[0].textContent = investigativ.value
-                urlLesen("investigativ")
-            });
-            wissen.addEventListener("click", () => {
-                bisherigeSchlagzeilenLoeschen();
-                gewaehltesRessort[0].textContent = wissen.value
-                urlLesen("wissen")
-            });
+
+            for (ressort of ressorts) {
+                let knopf = document.createElement("button");
+                knopf.textContent = ressort
+                knopfPosition.appendChild(knopf)
+                knopf.addEventListener("click", () => {
+                    // console.log(knopf.textContent)
+                    gewaehltesRessort[0].textContent = knopf.textContent
+                    bisherigeSchlagzeilenLoeschen();
+                    urlLesen(knopf.textContent)
+                })
+            }
         }
-        let gewaehltesRessort = document.getElementsByTagName("h3");
-        gewaehltesRessort[0].textContent = "sport"
+
+        function buttonFunktion() {
+            // let inland = document.getElementById("inland");
+            // let ausland = document.getElementById("ausland");
+            // let wirtschaft = document.getElementById("wirtschaft");
+            // let sport = document.getElementById("sport");
+            // let investigativ = document.getElementById("investigativ");
+            // let wissen = document.getElementById("wissen");
+            // let buttonAusland = document.getElementById("buttAusland")
+            // buttonAusland.addEventListener("click", () => {
+            //     bisherigeSchlagzeilenLoeschen();
+            //     gewaehltesRessort[0].textContent = ausland.value
+            //     urlLesen("ausland")
+            // })
+
+
+            function bisherigeSchlagzeilenLoeschen() {
+                const schlag = document.getElementById("Schlagzeilen");
+                while (schlag.firstChild) {
+                    schlag.removeChild(schlag.firstChild);
+                }
+            }
+            // inland.addEventListener("click", () => {
+            //     bisherigeSchlagzeilenLoeschen();
+            //     //alert(inland.value)
+            //     gewaehltesRessort[0].textContent = inland.value
+            //     urlLesen("inland")
+            // });
+            // ausland.addEventListener("click", () => {
+            //     bisherigeSchlagzeilenLoeschen();
+            //     gewaehltesRessort[0].textContent = ausland.value
+            //     urlLesen("ausland")
+            // });
+            // wirtschaft.addEventListener("click", () => {
+            //     bisherigeSchlagzeilenLoeschen();
+            //     gewaehltesRessort[0].textContent = wirtschaft.value
+            //     urlLesen("wirtschaft")
+            // });
+            // sport.addEventListener("click", () => {
+            //     bisherigeSchlagzeilenLoeschen();
+            //     gewaehltesRessort[0].textContent = sport.value
+            //     urlLesen("sport")
+            // });
+            // investigativ.addEventListener("click", () => {
+            //     bisherigeSchlagzeilenLoeschen();
+            //     gewaehltesRessort[0].textContent = investigativ.value
+            //     urlLesen("investigativ")
+            // });
+            // wissen.addEventListener("click", () => {
+            //     bisherigeSchlagzeilenLoeschen();
+            //     gewaehltesRessort[0].textContent = wissen.value
+            //     urlLesen("wissen")
+            // });
+        }
+
+        // Programmsteuerung
+        // let gewaehltesRessort = document.getElementsByTagName("h3");
+        // gewaehltesRessort[0].textContent = "sport";
+        buttonsErzeugen();
         urlLesen("sport")
-        buttonFunktion()
+        // buttonFunktion()
 
     </script>
 </body>
