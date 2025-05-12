@@ -23,7 +23,6 @@
 
     <div id="ressorts">
     </div>
-
     <dl id="Schlagzeilen">
         <!-- <dt>Beast of Bodmin</dt>
         <dd>A large feline inhabiting Bodmin Moor.</dd> -->
@@ -56,6 +55,9 @@
                 let leerzeile = document.createElement("hr");
                 let datum = document.createElement("span");
                 let alleTags = document.createElement("em");
+
+
+
                 neueErsteZeile.textContent = meldung.firstSentence;
                 neuerAnker.href = meldung.detailsweb;
                 datum.textContent = "   " + (new Date(meldung.date)).toLocaleString();
@@ -69,16 +71,32 @@
                 schlagzeilen.appendChild(neuerTitel);
                 schlagzeilen.appendChild(neueErsteZeile);
                 schlagzeilen.appendChild(leerzeile);
+                // Datum
+                let lulli = document.getElementsByTagName("dt");
+                let letzter = lulli.length - 1
+                console.log(lulli[letzter])
+                let grenze = new Date("2025-05-11");
+                let meldeDate = new Date(meldung.date);
+                console.log(grenze)
+                console.log(meldeDate)
+                if (meldeDate < grenze) {
+                    console.log("kleiner")
+                    lulli[letzter].setAttribute("style", "background-color: gainsboro");
+                } else {
+                    lulli[letzter].setAttribute("style", "background-color: white");
+                }
+                //
+
             };
 
             let blacklist = ["Fußball"];
             let taggis = meldung.tags.map(x => x.tag);
             tagString = taggis.toString();
-            
+
             for (item of meldung.tags) {
                 if (blacklist.includes(item.tag)) {
                     inBlacklist = true;
-                } 
+                }
             }
             if (!inBlacklist) meldungNichtAufBlacklist();
         }
@@ -100,16 +118,19 @@
                 knopf.textContent = ressort
                 knopfPosition.appendChild(knopf)
                 knopf.addEventListener("click", () => {
+                    console.log(knopf.textContent, (Date(Date.now())));
                     gewaehltesRessort[0].textContent = knopf.textContent
                     bisherigeSchlagzeilenLoeschen();
-                    urlLesen(knopf.textContent)
+                    urlLesen(knopf.textContent);
                 })
             }
         }
 
 
         // Programmsteuerung
-        urlLesen("sport")
+        let defaultRessort = "sport"
+        console.log(defaultRessort, (Date(Date.now())));
+        urlLesen(defaultRessort)
         buttonsErzeugen();
 
     </script>

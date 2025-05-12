@@ -1,6 +1,29 @@
 ## Änderungshistorie
 
 #
+### tagesschau_2025_05_12_V02
+
+#### Basis: tagesschau_2025_05_12_V01
+
+#### Änderung:
+* Die Schlagzeilen werden ab einer Grenze nach Datum eingefärbt
+
+#### ToDo:
+* Optisch aufbereiten
+* gelesene markieren
+* wäre es nicht besser, erst alles runterzuladen und dann nach dem Ressort zu filtern?
+* Ressortanzeige ist nicht schön programmiert
+    * Ressorts ausslesen und dann die entsprechenden Knöpfe erzeugen --> Ressort steht nicht im json, geht also nicht
+* Tags anzeigen, evt Blacklist davon erstellen. Statt tags Symbole, z.B. Nationalflaggen?
+* Refresh-Knopf (oder einfach neu laden?)
+* Die Zeit jeder Ressortauswahl in localStorage speichern. Beim nächsten Aufruf die neueren mit anderem Hintergrund anzeigen
+* Blacklist in localStorage
+* Die tags als Buttons, damit man sie per rechtem Mausklick und Kontextmenü zur Blacklist hinzufügen kann. 
+* Blacklist - Inhalte irgendwo anzeigen, eigener Knopf z.B., damit man sie nicht ständig anschauen muß
+* Blacklist programmatisch änderbar machen
+* Grenze beim Datum fürs Einfärben der Schlagzeilen besser machen. Geht auch die ganze Meldung einzufärben? Jetzt, wo ich es verstanden habe?
+
+#
 ### tagesschau_2025_05_12_V01
 
 #### Basis: tagesschau_2025_05_11_V02
