@@ -1,6 +1,30 @@
 ## Änderungshistorie
 
 #
+### tagesschau_2025_05_12_V01
+
+#### Basis: tagesschau_2025_05_11_V02
+
+#### Änderung:
+* Die tags werden verarbeitet
+    * tags stehen hinter dem Datum der Schlagzeile
+    * Meldungen mit tags der Blacklist werden nicht mehr angezeigt
+
+#### ToDo:
+* Optisch aufbereiten
+* gelesene markieren
+* wäre es nicht besser, erst alles runterzuladen und dann nach dem Ressort zu filtern?
+* Ressortanzeige ist nicht schön programmiert
+    * Ressorts ausslesen und dann die entsprechenden Knöpfe erzeugen --> Ressort steht nicht im json, geht also nicht
+* Tags anzeigen, evt Blacklist davon erstellen. Statt tags Symbole, z.B. Nationalflaggen?
+* Refresh-Knopf (oder einfach neu laden?)
+* Die Zeit jeder Ressortauswahl in localStorage speichern. Beim nächsten Aufruf die neueren mit anderem Hintergrund anzeigen
+* Blacklist in localStorage
+* Die tags als Buttons, damit man sie per rechtem Mausklick und Kontextmenü zur Blacklist hinzufügen kann. 
+* Blacklist - Inhalte irgendwo anzeigen, eigener Knopf z.B., damit man sie nicht ständig anschauen muß
+* Blacklist programmatisch änderbar machen
+
+#
 ### tagesschau_2025_05_11_V02
 
 #### Basis: tagesschau_2025_05_11_V01

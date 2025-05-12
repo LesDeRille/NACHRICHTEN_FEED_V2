@@ -46,23 +46,41 @@
         }
 
         function neueSchlagzeileErzeugen(meldung) {
-            let schlagzeilen = document.getElementById("Schlagzeilen");
-            let neuerTitel = document.createElement("dt");
-            let neueErsteZeile = document.createElement("dd");
-            let neuerAnker = document.createElement("a");
-            let leerzeile = document.createElement("hr");
-            let datum = document.createElement("span");
-            neueErsteZeile.textContent = meldung.firstSentence;
-            neuerAnker.href = meldung.detailsweb;
-            datum.textContent = "   " + (new Date(meldung.date)).toLocaleString();
-            neuerAnker.textContent = meldung.title
+            let inBlacklist = false;
 
-            neuerTitel.appendChild(neuerAnker);
-            neuerTitel.appendChild(datum)
+            function meldungNichtAufBlacklist() {
+                let schlagzeilen = document.getElementById("Schlagzeilen");
+                let neuerTitel = document.createElement("dt");
+                let neueErsteZeile = document.createElement("dd");
+                let neuerAnker = document.createElement("a");
+                let leerzeile = document.createElement("hr");
+                let datum = document.createElement("span");
+                let alleTags = document.createElement("em");
+                neueErsteZeile.textContent = meldung.firstSentence;
+                neuerAnker.href = meldung.detailsweb;
+                datum.textContent = "   " + (new Date(meldung.date)).toLocaleString();
+                neuerAnker.textContent = meldung.title;
+                alleTags.textContent = ", Tags:  " + tagString;
 
-            schlagzeilen.appendChild(neuerTitel)
-            schlagzeilen.appendChild(neueErsteZeile);
-            schlagzeilen.appendChild(leerzeile);
+                neuerTitel.appendChild(neuerAnker);
+                neuerTitel.appendChild(datum);
+                neuerTitel.appendChild(alleTags);
+
+                schlagzeilen.appendChild(neuerTitel);
+                schlagzeilen.appendChild(neueErsteZeile);
+                schlagzeilen.appendChild(leerzeile);
+            };
+
+            let blacklist = ["Fußball"];
+            let taggis = meldung.tags.map(x => x.tag);
+            tagString = taggis.toString();
+            
+            for (item of meldung.tags) {
+                if (blacklist.includes(item.tag)) {
+                    inBlacklist = true;
+                } 
+            }
+            if (!inBlacklist) meldungNichtAufBlacklist();
         }
 
         function buttonsErzeugen() {
