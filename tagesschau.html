@@ -60,19 +60,20 @@
                 let neuerAnker = document.createElement("a");
                 let leerzeile = document.createElement("hr");
                 let datum = document.createElement("span");
-                let alleTags = document.createElement("em");
-
-
+                let alleTags = document.createElement("button");
 
                 neueErsteZeile.textContent = meldung.firstSentence;
                 neuerAnker.href = meldung.detailsweb;
                 datum.textContent = "   " + (new Date(meldung.date)).toLocaleString();
                 neuerAnker.textContent = meldung.title;
-                alleTags.textContent = ", Tags:  " + tagString;
 
                 neuerTitel.appendChild(neuerAnker);
                 neuerTitel.appendChild(datum);
-                neuerTitel.appendChild(alleTags);
+                for (i of taggis) {
+                    let alleTags = document.createElement("button");
+                    alleTags.textContent = i;
+                    neuerTitel.appendChild(alleTags);
+                }
 
                 schlagzeilen.appendChild(neuerTitel);
                 schlagzeilen.appendChild(neueErsteZeile);
@@ -80,7 +81,6 @@
                 // Datum
                 let lulli = document.getElementsByTagName("dt");
                 let letzter = lulli.length - 1;
-
 
                 // let grenze = new Date("2025-05-11");
                 let grenze = new Date(letzterAufrufDesRessorts);
@@ -94,7 +94,7 @@
 
             let blacklist = ["Fußball"];
             let taggis = meldung.tags.map(x => x.tag);
-            tagString = taggis.toString();
+            let tagString = taggis.toString();
 
             for (item of meldung.tags) {
                 if (blacklist.includes(item.tag)) {

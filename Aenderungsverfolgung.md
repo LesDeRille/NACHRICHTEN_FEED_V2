@@ -1,6 +1,24 @@
 ## Änderungshistorie
 
 #
+### tagesschau_2025_05_13_V02
+
+#### Basis: tagesschau_2025_05_13_V01
+
+#### Änderung:
+* Die Tags kommen jetzt als Buttons
+
+#### ToDo:
+* Optisch aufbereiten
+* gelesene markieren
+* Refresh-Knopf (oder einfach neu laden?)
+* Blacklist in localStorage
+* Die tags sollen  per rechtem Mausklick und Kontextmenü zur Blacklist hinzugefügt werden können. 
+* Blacklist - Inhalte irgendwo anzeigen, eigener Knopf z.B., damit man sie nicht ständig anschauen muß
+* Blacklist programmatisch änderbar machen
+* Geht auch die ganze Meldung einzufärben? Jetzt, wo ich es verstanden habe?
+
+#
 ### tagesschau_2025_05_13_V01
 
 #### Basis: tagesschau_2025_05_12_V02
