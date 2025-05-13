@@ -29,22 +29,28 @@
     </dl>
     <script>
 
-        async function urlLesen(ressort) {
+        async function urlLesen(ressort = "Sport") {
             let url = 'https://www.tagesschau.de/api2u/news/?ressort=' + ressort;
             let response = await fetch(url);
             let commits = await response.json(); // read response body and parse as JSON
-            meldungenVerarbeiten(commits.news)
+
+            const letzteAufrufe = JSON.parse(localStorage.getItem("Ressortaufrufe"));
+            // console.log(letzteAufrufe)
+            const letzterAufrufDesRessorts = letzteAufrufe[ressort]
+            // console.log("ss", ressort, letzteAufrufe[ressort])
+
+            meldungenVerarbeiten(commits.news, letzterAufrufDesRessorts)
         }
 
 
-        function meldungenVerarbeiten(inhalt) {
+        function meldungenVerarbeiten(inhalt, letzterAufrufDesRessorts) {
             inhalt.sort((a, b) => new Date(b.date) - new Date(a.date))
             for (meldung of inhalt) {
-                neueSchlagzeileErzeugen(meldung);
+                neueSchlagzeileErzeugen(meldung, letzterAufrufDesRessorts);
             }
         }
 
-        function neueSchlagzeileErzeugen(meldung) {
+        function neueSchlagzeileErzeugen(meldung, letzterAufrufDesRessorts) {
             let inBlacklist = false;
 
             function meldungNichtAufBlacklist() {
@@ -73,20 +79,17 @@
                 schlagzeilen.appendChild(leerzeile);
                 // Datum
                 let lulli = document.getElementsByTagName("dt");
-                let letzter = lulli.length - 1
-                console.log(lulli[letzter])
-                let grenze = new Date("2025-05-11");
+                let letzter = lulli.length - 1;
+
+
+                // let grenze = new Date("2025-05-11");
+                let grenze = new Date(letzterAufrufDesRessorts);
                 let meldeDate = new Date(meldung.date);
-                console.log(grenze)
-                console.log(meldeDate)
                 if (meldeDate < grenze) {
-                    console.log("kleiner")
                     lulli[letzter].setAttribute("style", "background-color: gainsboro");
                 } else {
                     lulli[letzter].setAttribute("style", "background-color: white");
                 }
-                //
-
             };
 
             let blacklist = ["Fußball"];
@@ -118,7 +121,11 @@
                 knopf.textContent = ressort
                 knopfPosition.appendChild(knopf)
                 knopf.addEventListener("click", () => {
-                    console.log(knopf.textContent, (Date(Date.now())));
+                    // let ressortDatum = {};
+                    let ressortDatum = JSON.parse(localStorage.getItem("Ressortaufrufe"));
+                    ressortDatum[knopf.textContent] = Date();
+                    localStorage.setItem("Ressortaufrufe", JSON.stringify(ressortDatum));
+
                     gewaehltesRessort[0].textContent = knopf.textContent
                     bisherigeSchlagzeilenLoeschen();
                     urlLesen(knopf.textContent);
@@ -128,9 +135,8 @@
 
 
         // Programmsteuerung
-        let defaultRessort = "sport"
-        console.log(defaultRessort, (Date(Date.now())));
-        urlLesen(defaultRessort)
+        // let defaultRessort = "sport"
+        urlLesen();
         buttonsErzeugen();
 
     </script>
