@@ -81,9 +81,9 @@
                 // let grenze = new Date("2025-05-12");
                 let grenze = new Date(letzterAufrufDesRessorts);
                 let meldeDate = new Date(meldung.date);
-                console.log(meldeDate)
-                console.log(grenze)
-                console.log("xx")
+                // console.log(meldeDate)
+                // console.log(grenze)
+                // console.log("xx")
                 if (meldeDate < grenze) {
                     lulli[letzter].setAttribute("style", "background-color: gainsboro");
                 } else {
@@ -121,15 +121,23 @@
                 knopfPosition.appendChild(knopf)
                 knopf.addEventListener("click", () => {
                     // let ressortDatum = {};
-                    
+
                     let ressortDatum = JSON.parse(localStorage.getItem("Ressortaufrufe"));
+                    console.log(ressortDatum)
+                    // let ressortDatum = {}
                     // letztes Aufrufdatum
                     letzterAufrufDesRessorts = ressortDatum[knopf.textContent]
                     // Aktualisierung des Aufrufdatums
+                    console.log(knopf.textContent)
+                    console.log(Date())
                     ressortDatum[knopf.textContent] = Date();
+                    let werte = JSON.stringify(ressortDatum);
+                    console.log("werte", werte)
                     localStorage.setItem("Ressortaufrufe", JSON.stringify(ressortDatum));
-                    console.log(ressortDatum[knopf.textContent])
-                    console.log(ressortDatum)
+                    // console.log(ressortDatum[knopf.textContent])
+                    // console.log(ressortDatum)
+                    console.log(JSON.parse(localStorage.getItem("Ressortaufrufe")));
+
 
                     gewaehltesRessort[0].textContent = knopf.textContent
                     bisherigeSchlagzeilenLoeschen();
@@ -142,9 +150,16 @@
         // Programmsteuerung
         // let defaultRessort = "sport"
         const letzteAufrufe = JSON.parse(localStorage.getItem("Ressortaufrufe"));
-        // console.log(letzteAufrufe)
+        try {
+            Object.keys(letzteAufrufe).length > 0;
+        }
+        catch {
+            alert("Es sind keine Daten da. Oder bist Du im privaten Modus?");
+            // Hier fehlt ein Programmabbruch
+        }
+        // console.log("soso", letzteAufrufe)
         let letzterAufrufDesRessorts = letzteAufrufe["Sport"]
-        console.log("ss", letzterAufrufDesRessorts)
+        //console.log("ss", letzterAufrufDesRessorts)
 
         urlLesen();
         buttonsErzeugen();

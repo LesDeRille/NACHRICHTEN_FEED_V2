@@ -1,6 +1,27 @@
 ## Änderungshistorie
 
 #
+### tagesschau_2025_05_13_V04
+
+#### Basis: tagesschau_2025_05_13_V03
+
+#### Änderung:
+* localStorage war unerwartet leer, dann ging nichts mehr. Bastelhaft wieder aufgefüllt
+
+#### ToDo:
+* Optisch aufbereiten
+* gelesene markieren
+* Refresh-Knopf (oder einfach neu laden?)
+* Blacklist in localStorage
+* Die tags sollen  per rechtem Mausklick und Kontextmenü zur Blacklist hinzugefügt werden können. 
+* Blacklist - Inhalte irgendwo anzeigen, eigener Knopf z.B., damit man sie nicht ständig anschauen muß
+* Blacklist programmatisch änderbar machen
+* Geht auch die ganze Meldung einzufärben? Jetzt, wo ich es verstanden habe?
+* Es muß eine Abfrage rein, ob der private Modus benutzt wird. Dann geht ja localStorage nicht
+    * Nach der Abfrage muß notfalls ein Programmabbruch rein. Absturz ist schlecht
+* Wenn localStorage nichts enthält, muß das Programm trotzdem laufen
+
+#
 ### tagesschau_2025_05_13_V03
 
 #### Basis: tagesschau_2025_05_13_V02
