@@ -1,7 +1,25 @@
 ## Änderungshistorie
 
 #
-### tagesschau_2025_05_13_V02
+### tagesschau_2025_05_13_V03
+
+#### Basis: tagesschau_2025_05_13_V02
+
+#### Änderung:
+* Fehler beim Ermitteln des Datums des letzten Ressoraufrufs behoben
+
+#### ToDo:
+* Optisch aufbereiten
+* gelesene markieren
+* Refresh-Knopf (oder einfach neu laden?)
+* Blacklist in localStorage
+* Die tags sollen  per rechtem Mausklick und Kontextmenü zur Blacklist hinzugefügt werden können. 
+* Blacklist - Inhalte irgendwo anzeigen, eigener Knopf z.B., damit man sie nicht ständig anschauen muß
+* Blacklist programmatisch änderbar machen
+* Geht auch die ganze Meldung einzufärben? Jetzt, wo ich es verstanden habe?
+
+#
+### tagesschau_2025_05_13_V02 - Schein eher die V1 zu sein. Habe evt. im falschen Datum meine Änderungen eingetragen
 
 #### Basis: tagesschau_2025_05_13_V01
 
@@ -19,7 +37,7 @@
 * Geht auch die ganze Meldung einzufärben? Jetzt, wo ich es verstanden habe?
 
 #
-### tagesschau_2025_05_13_V01
+### tagesschau_2025_05_13_V01 - Scheint eher die V2 zu sein. Habe evt. im falschen Datum meine Änderungen eingetragen
 
 #### Basis: tagesschau_2025_05_12_V02
 

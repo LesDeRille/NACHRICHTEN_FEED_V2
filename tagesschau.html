@@ -34,23 +34,19 @@
             let response = await fetch(url);
             let commits = await response.json(); // read response body and parse as JSON
 
-            const letzteAufrufe = JSON.parse(localStorage.getItem("Ressortaufrufe"));
-            // console.log(letzteAufrufe)
-            const letzterAufrufDesRessorts = letzteAufrufe[ressort]
-            // console.log("ss", ressort, letzteAufrufe[ressort])
 
-            meldungenVerarbeiten(commits.news, letzterAufrufDesRessorts)
+            meldungenVerarbeiten(commits.news)
         }
 
 
-        function meldungenVerarbeiten(inhalt, letzterAufrufDesRessorts) {
+        function meldungenVerarbeiten(inhalt) {
             inhalt.sort((a, b) => new Date(b.date) - new Date(a.date))
             for (meldung of inhalt) {
-                neueSchlagzeileErzeugen(meldung, letzterAufrufDesRessorts);
+                neueSchlagzeileErzeugen(meldung);
             }
         }
 
-        function neueSchlagzeileErzeugen(meldung, letzterAufrufDesRessorts) {
+        function neueSchlagzeileErzeugen(meldung) {
             let inBlacklist = false;
 
             function meldungNichtAufBlacklist() {
@@ -82,9 +78,12 @@
                 let lulli = document.getElementsByTagName("dt");
                 let letzter = lulli.length - 1;
 
-                // let grenze = new Date("2025-05-11");
+                // let grenze = new Date("2025-05-12");
                 let grenze = new Date(letzterAufrufDesRessorts);
                 let meldeDate = new Date(meldung.date);
+                console.log(meldeDate)
+                console.log(grenze)
+                console.log("xx")
                 if (meldeDate < grenze) {
                     lulli[letzter].setAttribute("style", "background-color: gainsboro");
                 } else {
@@ -122,9 +121,15 @@
                 knopfPosition.appendChild(knopf)
                 knopf.addEventListener("click", () => {
                     // let ressortDatum = {};
+                    
                     let ressortDatum = JSON.parse(localStorage.getItem("Ressortaufrufe"));
+                    // letztes Aufrufdatum
+                    letzterAufrufDesRessorts = ressortDatum[knopf.textContent]
+                    // Aktualisierung des Aufrufdatums
                     ressortDatum[knopf.textContent] = Date();
                     localStorage.setItem("Ressortaufrufe", JSON.stringify(ressortDatum));
+                    console.log(ressortDatum[knopf.textContent])
+                    console.log(ressortDatum)
 
                     gewaehltesRessort[0].textContent = knopf.textContent
                     bisherigeSchlagzeilenLoeschen();
@@ -136,6 +141,11 @@
 
         // Programmsteuerung
         // let defaultRessort = "sport"
+        const letzteAufrufe = JSON.parse(localStorage.getItem("Ressortaufrufe"));
+        // console.log(letzteAufrufe)
+        let letzterAufrufDesRessorts = letzteAufrufe["Sport"]
+        console.log("ss", letzterAufrufDesRessorts)
+
         urlLesen();
         buttonsErzeugen();
 
