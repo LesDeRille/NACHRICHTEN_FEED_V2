@@ -75,19 +75,15 @@
                 schlagzeilen.appendChild(neueErsteZeile);
                 schlagzeilen.appendChild(leerzeile);
                 // Datum
-                let lulli = document.getElementsByTagName("dt");
-                let letzter = lulli.length - 1;
+                let titelzeilen = document.getElementsByTagName("dt");
+                let letzte = titelzeilen.length - 1;
 
-                // let grenze = new Date("2025-05-12");
                 let grenze = new Date(letzterAufrufDesRessorts);
                 let meldeDate = new Date(meldung.date);
-                // console.log(meldeDate)
-                // console.log(grenze)
-                // console.log("xx")
                 if (meldeDate < grenze) {
-                    lulli[letzter].setAttribute("style", "background-color: gainsboro");
+                    titelzeilen[letzte].setAttribute("style", "background-color: gainsboro");
                 } else {
-                    lulli[letzter].setAttribute("style", "background-color: white");
+                    titelzeilen[letzte].setAttribute("style", "background-color: white");
                 }
             };
 
@@ -105,7 +101,7 @@
 
         function buttonsErzeugen() {
             let gewaehltesRessort = document.getElementsByTagName("h3");
-            let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
+            //let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
             let knopfPosition = document.getElementById("ressorts");
 
             function bisherigeSchlagzeilenLoeschen() {
@@ -138,7 +134,8 @@
         // Programmsteuerung
         // let defaultRessort = "sport"
 
-        let letzterAufrufDesRessorts
+        let letzterAufrufDesRessorts;
+        let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
         const letzteAufrufe = JSON.parse(localStorage.getItem("Ressortaufrufe"));
 
         try {
@@ -159,7 +156,7 @@
             // oder weil Safari im privaten Modus nicht aus localStorage lesen kann,
             // werden hier für jedes Ressort Startdaten erstellt
             const startdatum = new Date("1970-01-01");
-            let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
+            // let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
             let ressortDatum = {};
             for (ressort of ressorts) {
                 ressortDatum[ressort] = startdatum;

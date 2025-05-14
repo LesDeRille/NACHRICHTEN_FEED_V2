@@ -1,6 +1,24 @@
 ## Änderungshistorie
 
 #
+### tagesschau_2025_05_14_V03
+
+#### Basis: tagesschau_2025_05_14_V02
+
+#### Änderung:
+* ressorts ausgelagert, einige Varable umgenannt und Kommentare reduziert
+
+#### ToDo:
+* Optisch aufbereiten
+* gelesene markieren
+* Refresh-Knopf (oder einfach neu laden?)
+* Blacklist in localStorage
+* Die tags sollen  per rechtem Mausklick und Kontextmenü zur Blacklist hinzugefügt werden können. 
+* Blacklist - Inhalte irgendwo anzeigen, eigener Knopf z.B., damit man sie nicht ständig anschauen muß
+* Blacklist programmatisch änderbar machen
+* Geht auch die ganze Meldung einzufärben? Jetzt, wo ich es verstanden habe?
+
+#
 ### tagesschau_2025_05_14_V02
 
 #### Basis: tagesschau_2025_05_14_V01
