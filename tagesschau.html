@@ -126,17 +126,23 @@
                     console.log(ressortDatum)
                     // let ressortDatum = {}
                     // letztes Aufrufdatum
-                    letzterAufrufDesRessorts = ressortDatum[knopf.textContent]
-                    // Aktualisierung des Aufrufdatums
-                    console.log(knopf.textContent)
-                    console.log(Date())
-                    ressortDatum[knopf.textContent] = Date();
-                    let werte = JSON.stringify(ressortDatum);
-                    console.log("werte", werte)
-                    localStorage.setItem("Ressortaufrufe", JSON.stringify(ressortDatum));
-                    // console.log(ressortDatum[knopf.textContent])
-                    // console.log(ressortDatum)
-                    console.log(JSON.parse(localStorage.getItem("Ressortaufrufe")));
+                    try {
+                        letzterAufrufDesRessorts = ressortDatum[knopf.textContent];
+                        // Aktualisierung des Aufrufdatums
+                        console.log(knopf.textContent)
+                        console.log(Date())
+                        ressortDatum[knopf.textContent] = Date();
+                        let werte = JSON.stringify(ressortDatum);
+                        console.log("werte", werte)
+                        localStorage.setItem("Ressortaufrufe", JSON.stringify(ressortDatum));
+                        // console.log(ressortDatum[knopf.textContent])
+                        // console.log(ressortDatum)
+                        console.log(JSON.parse(localStorage.getItem("Ressortaufrufe")));
+                    } catch {
+                        letzterAufrufDesRessorts = new Date("1970-01-01")
+                    }
+
+
 
 
                     gewaehltesRessort[0].textContent = knopf.textContent
@@ -149,17 +155,32 @@
 
         // Programmsteuerung
         // let defaultRessort = "sport"
+        let letzterAufrufDesRessorts
         const letzteAufrufe = JSON.parse(localStorage.getItem("Ressortaufrufe"));
         try {
             Object.keys(letzteAufrufe).length > 0;
+            weiterImNormalenModus();
         }
         catch {
             alert("Es sind keine Daten da. Oder bist Du im privaten Modus?");
+            weiterImPrivatenModus();
             // Hier fehlt ein Programmabbruch
+            // Oder Dummydaten erzeugen, falls nicht privat. Es muß ja beim ersten Start auch laufen
+
         }
-        // console.log("soso", letzteAufrufe)
-        let letzterAufrufDesRessorts = letzteAufrufe["Sport"]
-        //console.log("ss", letzterAufrufDesRessorts)
+
+        function weiterImNormalenModus() {
+            // console.log("soso", letzteAufrufe)
+            letzterAufrufDesRessorts = letzteAufrufe["Sport"]
+            //console.log("ss", letzterAufrufDesRessorts)
+        }
+
+        function weiterImPrivatenModus() {
+            // console.log("soso", letzteAufrufe)
+            letzterAufrufDesRessorts = new Date("1970-01-01")
+            //console.log("ss", letzterAufrufDesRessorts)
+        }
+
 
         urlLesen();
         buttonsErzeugen();

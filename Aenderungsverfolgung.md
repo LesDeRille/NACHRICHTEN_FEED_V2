@@ -1,6 +1,25 @@
 ## Änderungshistorie
 
 #
+### tagesschau_2025_05_14_V01
+
+#### Basis: tagesschau_2025_05_13_V04
+
+#### Änderung:
+* Programm läuft auch im privaten Modus. Dann gibt es halt keine Markierung für bereits eingeblendete Schlagzeilen
+
+#### ToDo:
+* Optisch aufbereiten
+* gelesene markieren
+* Refresh-Knopf (oder einfach neu laden?)
+* Blacklist in localStorage
+* Die tags sollen  per rechtem Mausklick und Kontextmenü zur Blacklist hinzugefügt werden können. 
+* Blacklist - Inhalte irgendwo anzeigen, eigener Knopf z.B., damit man sie nicht ständig anschauen muß
+* Blacklist programmatisch änderbar machen
+* Geht auch die ganze Meldung einzufärben? Jetzt, wo ich es verstanden habe?
+* Wenn localStorage nichts enthält, muß das Programm trotzdem laufen. Und natürlich localStorage befüllt werden (im normalen Modus)
+
+#
 ### tagesschau_2025_05_13_V04
 
 #### Basis: tagesschau_2025_05_13_V03
