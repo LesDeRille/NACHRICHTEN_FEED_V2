@@ -58,6 +58,8 @@
             blacklist.push(gewaehlterTag.textContent);
             console.log(blacklist)
             tagDialog.close();
+            bisherigeSchlagzeilenLoeschen();
+            urlLesen();
         });
 
         let gewaehlterTag = document.getElementById("derTag");
@@ -125,17 +127,19 @@
             if (!inBlacklist) meldungNichtAufBlacklist();
         }
 
+        function bisherigeSchlagzeilenLoeschen() {
+            const schlag = document.getElementById("Schlagzeilen");
+            while (schlag.firstChild) {
+                schlag.removeChild(schlag.firstChild);
+            }
+        }
+
         function buttonsErzeugen() {
             let gewaehltesRessort = document.getElementsByTagName("h3");
             //let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
             let knopfPosition = document.getElementById("ressorts");
 
-            function bisherigeSchlagzeilenLoeschen() {
-                const schlag = document.getElementById("Schlagzeilen");
-                while (schlag.firstChild) {
-                    schlag.removeChild(schlag.firstChild);
-                }
-            }
+
 
             for (ressort of ressorts) {
                 let knopf = document.createElement("button");
