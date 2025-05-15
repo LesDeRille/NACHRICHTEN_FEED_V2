@@ -1,6 +1,25 @@
 ## Änderungshistorie
 
 #
+### tagesschau_2025_05_15_V01
+
+#### Basis: tagesschau_2025_05_14_V03
+
+#### Änderung:
+* unerwünschter tag kann mit rechter Maustaste angeklickt und auf Blacklist gesetzt werden. Sonst passiert aber noch nichts mit der neuen Blacklist
+
+#### ToDo:
+* Optisch aufbereiten
+* gelesene markieren
+* Refresh-Knopf (oder einfach neu laden?)
+* Blacklist in localStorage
+* Die tags sollen  per rechtem Mausklick und Kontextmenü zur Blacklist hinzugefügt werden können. 
+    * Geht, der Neuaufbau der Seite unter Berücksichtigung der neuen Blacklist fehlt noch
+* Blacklist - Inhalte irgendwo anzeigen, eigener Knopf z.B., damit man sie nicht ständig anschauen muß
+* Blacklist programmatisch änderbar machen
+* Geht auch die ganze Meldung einzufärben? Jetzt, wo ich es verstanden habe?
+
+#
 ### tagesschau_2025_05_14_V03
 
 #### Basis: tagesschau_2025_05_14_V02

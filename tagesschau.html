@@ -27,6 +27,13 @@
         <!-- <dt>Beast of Bodmin</dt>
         <dd>A large feline inhabiting Bodmin Moor.</dd> -->
     </dl>
+
+    <!-- Dialog muß ich nachher übernehmen -->
+    <dialog id="tagDialog">
+        <p>Tag <em id="derTag"></em> auf Blacklist?</p>
+        <p><input type="submit" value="OK" id="tagAufBlacklist"></p>
+    </dialog>
+    <!-- Ende Dialog muß ich nachher übernehmen -->
     <script>
 
         async function urlLesen(ressort = "Sport") {
@@ -45,6 +52,16 @@
                 neueSchlagzeileErzeugen(meldung);
             }
         }
+
+        tagAufBlacklist.addEventListener("click", () => {
+            console.log(blacklist)
+            blacklist.push(gewaehlterTag.textContent);
+            console.log(blacklist)
+            tagDialog.close();
+        });
+
+        let gewaehlterTag = document.getElementById("derTag");
+
 
         function neueSchlagzeileErzeugen(meldung) {
             let inBlacklist = false;
@@ -65,11 +82,20 @@
 
                 neuerTitel.appendChild(neuerAnker);
                 neuerTitel.appendChild(datum);
+                // Hauptteil zum nachher ins Hauptprogramm reinkopieren
+
                 for (i of taggis) {
-                    let alleTags = document.createElement("button");
-                    alleTags.textContent = i;
-                    neuerTitel.appendChild(alleTags);
+                    let tagButton = document.createElement("button");
+                    tagButton.textContent = i;
+                    neuerTitel.appendChild(tagButton);
+
+                    tagButton.oncontextmenu = function (event) {
+                        event.preventDefault();
+                        gewaehlterTag.textContent = tagButton.textContent;
+                        tagDialog.showModal();
+                    }
                 }
+                // Ende Hauptteil zum nachher ins Hauptprogramm reinkopieren
 
                 schlagzeilen.appendChild(neuerTitel);
                 schlagzeilen.appendChild(neueErsteZeile);
@@ -87,7 +113,7 @@
                 }
             };
 
-            let blacklist = ["Fußball"];
+
             let taggis = meldung.tags.map(x => x.tag);
             let tagString = taggis.toString();
 
@@ -137,6 +163,7 @@
         let letzterAufrufDesRessorts;
         let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
         const letzteAufrufe = JSON.parse(localStorage.getItem("Ressortaufrufe"));
+        let blacklist = ["Fußball"];
 
         try {
             Object.keys(letzteAufrufe).length > 0;
