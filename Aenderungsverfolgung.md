@@ -1,12 +1,30 @@
 ## Änderungshistorie
 
 #
+### tagesschau_2025_06_14_V01
+
+#### Basis: tagesschau_2025_05_15_V02
+
+#### Änderung:
+* Blacklist um Israel, Basketball, Eishokey, Ukraine erweitert
+
+#### ToDo:
+* Optisch aufbereiten
+* gelesene markieren
+* Refresh-Knopf (oder einfach neu laden?)
+* Blacklist in localStorage
+* Blacklist - Inhalte irgendwo anzeigen, eigener Knopf z.B., damit man sie nicht ständig anschauen muß
+* Blacklist programmatisch änderbar machen
+* Geht auch die ganze Meldung einzufärben? Jetzt, wo ich es verstanden habe?
+
+
+#
 ### tagesschau_2025_05_15_V02
 
 #### Basis: tagesschau_2025_05_15_V01
 
 #### Änderung:
-* tagesschau.json wird neu gelesen und Schlagzeilen  unter Berücksichtigung der Blacklist neu aufgebaut
+* tagesschau.json wird nach dem Setzen eines tags auf die Blacklist neu gelesen und Schlagzeilen  unter Berücksichtigung der Blacklist neu aufgebaut
 
 #### ToDo:
 * Optisch aufbereiten
