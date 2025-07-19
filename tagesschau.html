@@ -53,6 +53,7 @@
             }
         }
 
+        // Hier kommt die Verarbeitung des Klicks auf den 'OK' Button im 'tagDialog'
         tagAufBlacklist.addEventListener("click", () => {
             console.log(blacklist)
             blacklist.push(gewaehlterTag.textContent);
@@ -63,6 +64,7 @@
         });
 
         let gewaehlterTag = document.getElementById("derTag");
+        console.log(gewaehlterTag)
 
 
         function neueSchlagzeileErzeugen(meldung) {
@@ -75,6 +77,7 @@
                 let neuerAnker = document.createElement("a");
                 let leerzeile = document.createElement("hr");
                 let datum = document.createElement("span");
+                // Wird gar nicht benutzt?
                 let alleTags = document.createElement("button");
 
                 neueErsteZeile.textContent = meldung.firstSentence;
@@ -167,7 +170,7 @@
         let letzterAufrufDesRessorts;
         let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
         const letzteAufrufe = JSON.parse(localStorage.getItem("Ressortaufrufe"));
-        let blacklist = ["Fußball","Basketball","Eishockey","Israel","Ukraine"];
+        let blacklist = ["Fußball", "Basketball", "Eishockey", "Israel", "Ukraine"];
 
         try {
             Object.keys(letzteAufrufe).length > 0;
