@@ -89,9 +89,9 @@
                 neuerTitel.appendChild(datum);
                 // Hauptteil zum nachher ins Hauptprogramm reinkopieren
 
-                for (i of taggis) {
+                for (einzelnerTag of alleTagsDerMeldung) {
                     let tagButton = document.createElement("button");
-                    tagButton.textContent = i;
+                    tagButton.textContent = einzelnerTag;
                     neuerTitel.appendChild(tagButton);
 
                     tagButton.oncontextmenu = function (event) {
@@ -119,8 +119,8 @@
             };
 
 
-            let taggis = meldung.tags.map(x => x.tag);
-            let tagString = taggis.toString();
+            let alleTagsDerMeldung = meldung.tags.map(x => x.tag);
+            let tagString = alleTagsDerMeldung.toString();
 
             for (item of meldung.tags) {
                 if (blacklist.includes(item.tag)) {
