@@ -35,6 +35,7 @@
     </dialog>
     <!-- Ende Dialog muß ich nachher übernehmen -->
     <script>
+        "use strict";
 
         async function urlLesen(ressort = "Sport") {
             let url = 'https://www.tagesschau.de/api2u/news/?ressort=' + ressort;
@@ -48,7 +49,7 @@
 
         function meldungenVerarbeiten(inhalt) {
             inhalt.sort((a, b) => new Date(b.date) - new Date(a.date))
-            for (meldung of inhalt) {
+            for (let meldung of inhalt) {
                 neueSchlagzeileErzeugen(meldung);
             }
         }
@@ -89,7 +90,7 @@
                 neuerTitel.appendChild(datum);
                 // Hauptteil zum nachher ins Hauptprogramm reinkopieren
 
-                for (einzelnerTag of alleTagsDerMeldung) {
+                for (let einzelnerTag of alleTagsDerMeldung) {
                     let tagButton = document.createElement("button");
                     tagButton.textContent = einzelnerTag;
                     neuerTitel.appendChild(tagButton);
@@ -122,7 +123,7 @@
             let alleTagsDerMeldung = meldung.tags.map(x => x.tag);
             let tagString = alleTagsDerMeldung.toString();
 
-            for (item of meldung.tags) {
+            for (let item of meldung.tags) {
                 if (blacklist.includes(item.tag)) {
                     inBlacklist = true;
                 }
@@ -144,7 +145,7 @@
 
 
 
-            for (ressort of ressorts) {
+            for (let ressort of ressorts) {
                 let knopf = document.createElement("button");
                 knopf.textContent = ressort
                 knopfPosition.appendChild(knopf)

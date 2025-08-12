@@ -1,6 +1,28 @@
 ## Änderungshistorie
 
 #
+### tagesschau_2025_08_12_V02
+
+#### Basis: tagesschau_2025_08_12_V01
+
+#### Änderung:
+* erst mal verstehen, was bis jetzt schon drin ist.
+* use strict eingebaut
+
+#### ToDo:
+* Optisch aufbereiten
+* gelesene markieren
+* Refresh-Knopf (oder einfach neu laden?)
+* Blacklist in localStorage
+* Blacklist - Inhalte irgendwo anzeigen, eigener Knopf z.B., damit man sie nicht ständig anschauen muß
+* Blacklist programmatisch änderbar machen
+    * Durch Rechtsklick kommt der Tag bereits auf die Blacklist, Blacklist wird aber noch nicht aktualisiert und gespeichert
+    * Klicken auf einen Tag der Blacklist entfernt der Tag von der Blacklist
+* Geht auch die ganze Meldung einzufärben? Jetzt, wo ich es verstanden habe?
+* localStorage exportieren, damit ich es auf dem iPad oder einem anderen Browser einlesen kann
+* nutze ich überhaupt alle vorhandenen ressorts? Bis jetzt sind die fest vorgegeben. Kann ich die Ressorts dynamisch festlegen? Es könnten ja auch mal welche dazukommen
+
+#
 ### tagesschau_2025_08_12_V01
 
 #### Basis: tagesschau_2025_08_11_V01
@@ -21,6 +43,7 @@
 * Geht auch die ganze Meldung einzufärben? Jetzt, wo ich es verstanden habe?
 * localStorage exportieren, damit ich es auf dem iPad oder einem anderen Browser einlesen kann
 * nutze ich überhaupt alle vorhandenen ressorts? Bis jetzt sind die fest vorgegeben. Kann ich die Ressorts dynamisch festlegen? Es könnten ja auch mal welche dazukommen
+
 
 #
 ### tagesschau_2025_08_11_V01
