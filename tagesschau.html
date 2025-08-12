@@ -42,13 +42,14 @@
             let response = await fetch(url);
             let commits = await response.json(); // read response body and parse as JSON
 
-
             meldungenVerarbeiten(commits.news)
         }
 
 
         function meldungenVerarbeiten(inhalt) {
+            // Dateiinhalt nach Datum absteigend sortieren
             inhalt.sort((a, b) => new Date(b.date) - new Date(a.date))
+
             for (let meldung of inhalt) {
                 neueSchlagzeileErzeugen(meldung);
             }
@@ -79,17 +80,20 @@
                 let leerzeile = document.createElement("hr");
                 let datum = document.createElement("span");
                 // Wird gar nicht benutzt?
-                let alleTags = document.createElement("button");
+                // let alleTags = document.createElement("button");
 
+                // Bausteine der Schlagzeile zusammenklauben
                 neueErsteZeile.textContent = meldung.firstSentence;
                 neuerAnker.href = meldung.detailsweb;
                 datum.textContent = "   " + (new Date(meldung.date)).toLocaleString();
                 neuerAnker.textContent = meldung.title;
 
+                // Bausteine der Schlagzeile an neues Listenelement anhängen
                 neuerTitel.appendChild(neuerAnker);
                 neuerTitel.appendChild(datum);
                 // Hauptteil zum nachher ins Hauptprogramm reinkopieren
 
+                // Tags der Meldung als Buttons ausgeben
                 for (let einzelnerTag of alleTagsDerMeldung) {
                     let tagButton = document.createElement("button");
                     tagButton.textContent = einzelnerTag;
@@ -103,19 +107,22 @@
                 }
                 // Ende Hauptteil zum nachher ins Hauptprogramm reinkopieren
 
+                // Bausteine der Schlagzeile an document anhängen
                 schlagzeilen.appendChild(neuerTitel);
                 schlagzeilen.appendChild(neueErsteZeile);
                 schlagzeilen.appendChild(leerzeile);
-                // Datum
-                let titelzeilen = document.getElementsByTagName("dt");
-                let letzte = titelzeilen.length - 1;
 
+                // Letzte Titelzeile heuausfinden
+                let titelzeilen = document.getElementsByTagName("dt");
+                let letzteTitelzeilenNummer = titelzeilen.length - 1;
+               
+                // Aktuelles Meldungsdatum mit Datum des vorigen Aufrufs der Meldung vergleichen
                 let grenze = new Date(letzterAufrufDesRessorts);
                 let meldeDate = new Date(meldung.date);
                 if (meldeDate < grenze) {
-                    titelzeilen[letzte].setAttribute("style", "background-color: gainsboro");
+                    titelzeilen[letzteTitelzeilenNummer].setAttribute("style", "background-color: gainsboro");
                 } else {
-                    titelzeilen[letzte].setAttribute("style", "background-color: white");
+                    titelzeilen[letzteTitelzeilenNummer].setAttribute("style", "background-color: white");
                 }
             };
 
@@ -138,7 +145,7 @@
             }
         }
 
-        function buttonsErzeugen() {
+        function ressortButtonsErzeugen() {
             let gewaehltesRessort = document.getElementsByTagName("h3");
             //let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
             let knopfPosition = document.getElementById("ressorts");
@@ -202,7 +209,7 @@
         }
 
         urlLesen();
-        buttonsErzeugen();
+        ressortButtonsErzeugen();
 
     </script>
 </body>
