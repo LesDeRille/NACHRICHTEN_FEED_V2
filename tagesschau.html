@@ -47,7 +47,7 @@
 
 
         function meldungenVerarbeiten(inhalt) {
-            // Dateiinhalt nach Datum absteigend sortieren
+            // 'news' aus json nach Datum absteigend sortieren
             inhalt.sort((a, b) => new Date(b.date) - new Date(a.date))
 
             for (let meldung of inhalt) {
@@ -73,6 +73,8 @@
             let inBlacklist = false;
 
             function meldungNichtAufBlacklist() {
+
+                // html Elemente erzeugen
                 let schlagzeilen = document.getElementById("Schlagzeilen");
                 let neuerTitel = document.createElement("dt");
                 let neueErsteZeile = document.createElement("dd");
@@ -99,6 +101,7 @@
                     tagButton.textContent = einzelnerTag;
                     neuerTitel.appendChild(tagButton);
 
+                    // Rechtsklick auf Button verarbeiten
                     tagButton.oncontextmenu = function (event) {
                         event.preventDefault();
                         gewaehlterTag.textContent = tagButton.textContent;
@@ -112,29 +115,39 @@
                 schlagzeilen.appendChild(neueErsteZeile);
                 schlagzeilen.appendChild(leerzeile);
 
-                // Letzte Titelzeile heuausfinden
-                let titelzeilen = document.getElementsByTagName("dt");
-                let letzteTitelzeilenNummer = titelzeilen.length - 1;
-               
-                // Aktuelles Meldungsdatum mit Datum des vorigen Aufrufs der Meldung vergleichen
-                let grenze = new Date(letzterAufrufDesRessorts);
-                let meldeDate = new Date(meldung.date);
-                if (meldeDate < grenze) {
-                    titelzeilen[letzteTitelzeilenNummer].setAttribute("style", "background-color: gainsboro");
-                } else {
-                    titelzeilen[letzteTitelzeilenNummer].setAttribute("style", "background-color: white");
+                istDieMeldungNeu();
+
+                // Prüfen, ob die Meldung schon mal eingeblendet wurde
+                function istDieMeldungNeu() {
+                    // Letzte Titelzeile heuausfinden
+                    let titelzeilen = document.getElementsByTagName("dt");
+                    let letzteTitelzeilenNummer = titelzeilen.length - 1;
+
+                    // Aktuelles Meldungsdatum mit Datum des vorigen Aufrufs der Meldung vergleichen
+                    let grenze = new Date(letzterAufrufDesRessorts);
+                    let meldeDate = new Date(meldung.date);
+                    if (meldeDate < grenze) {
+                        titelzeilen[letzteTitelzeilenNummer].setAttribute("style", "background-color: gainsboro");
+                    } else {
+                        titelzeilen[letzteTitelzeilenNummer].setAttribute("style", "background-color: white");
+                    }
                 }
+
+
             };
 
 
             let alleTagsDerMeldung = meldung.tags.map(x => x.tag);
-            let tagString = alleTagsDerMeldung.toString();
+            // wird nicht mehr benutzt?
+            //let tagString = alleTagsDerMeldung.toString();
 
+            // prüfen, ob ein Tag der Meldung auf der Blacklist ist
             for (let item of meldung.tags) {
                 if (blacklist.includes(item.tag)) {
                     inBlacklist = true;
                 }
             }
+
             if (!inBlacklist) meldungNichtAufBlacklist();
         }
 
@@ -149,8 +162,6 @@
             let gewaehltesRessort = document.getElementsByTagName("h3");
             //let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
             let knopfPosition = document.getElementById("ressorts");
-
-
 
             for (let ressort of ressorts) {
                 let knopf = document.createElement("button");
