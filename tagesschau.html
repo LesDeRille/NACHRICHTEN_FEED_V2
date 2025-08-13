@@ -19,7 +19,9 @@
 
 <body>
     <h2>Tagesschau</h2>
-    <h3>Sport</h3>
+    <!-- <h3>Sport</h3> -->
+    <!-- leere Überschrift, wird in der Programmsteuerung befüllt -->
+    <h3></h3>
 
     <div id="ressorts">
     </div>
@@ -55,13 +57,23 @@
             }
         }
 
+        function machAusgeblendeteTagsString(reso) {
+            ausgeblendeteTagsString = reso + " (Ausgeblendete Tags: " + blacklist + ")";
+        }
+
         // Hier kommt die Verarbeitung des Klicks auf den 'OK' Button im 'tagDialog'
+        // Mit 'OK' wird der Tag auf die Blacklist geschrieben
         tagAufBlacklist.addEventListener("click", () => {
             console.log(blacklist)
             blacklist.push(gewaehlterTag.textContent);
             console.log(blacklist)
             tagDialog.close();
             bisherigeSchlagzeilenLoeschen();
+            //ausgeblendeteTagsString = " (Ausgeblendete Tags: " + blacklist + ")";
+            machAusgeblendeteTagsString("lala");
+            startRessort = document.getElementsByTagName("h3");
+            console.log(gewaehltesRessort)
+            startRessort[0].textContent = ausgeblendeteTagsString;
             urlLesen();
         });
 
@@ -132,10 +144,7 @@
                         titelzeilen[letzteTitelzeilenNummer].setAttribute("style", "background-color: white");
                     }
                 }
-
-
             };
-
 
             let alleTagsDerMeldung = meldung.tags.map(x => x.tag);
             // wird nicht mehr benutzt?
@@ -175,7 +184,10 @@
                     let werte = JSON.stringify(ressortDatum);
                     localStorage.setItem("Ressortaufrufe", JSON.stringify(ressortDatum));
 
-                    gewaehltesRessort[0].textContent = knopf.textContent
+                    // gewaehltesRessort[0].textContent = knopf.textContent
+                    machAusgeblendeteTagsString(knopf.textContent);
+                    // gewaehltesRessort[0].textContent = knopf.textContent + " (Ausgeblendete Tags: " + blacklist + ")"
+                    gewaehltesRessort[0].textContent = knopf.textContent + ausgeblendeteTagsString;
                     bisherigeSchlagzeilenLoeschen();
                     urlLesen(knopf.textContent);
                 })
@@ -190,6 +202,11 @@
         let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
         const letzteAufrufe = JSON.parse(localStorage.getItem("Ressortaufrufe"));
         let blacklist = ["Fußball", "Basketball", "Eishockey", "Israel", "Ukraine"];
+        // let ausgeblendeteTagsString = " (Ausgeblendete Tags: " + blacklist + ")";
+        let ausgeblendeteTagsString;
+        machAusgeblendeteTagsString("Sport");
+        let startRessort = document.getElementsByTagName("h3");
+        startRessort[0].textContent = ausgeblendeteTagsString;
 
         try {
             Object.keys(letzteAufrufe).length > 0;
