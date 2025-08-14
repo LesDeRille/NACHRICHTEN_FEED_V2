@@ -35,6 +35,10 @@
         <p>Tag <em id="derTag"></em> auf Blacklist?</p>
         <p><input type="submit" value="OK" id="tagAufBlacklist"></p>
     </dialog>
+    <dialog id="blacklistTagDialog">
+        <p>Tag <em id="derBlacklistTag"></em> aus Blacklist rausnehmen?</p>
+        <p><input type="submit" value="OK" id="tagRausAusBlacklist"></p>
+    </dialog>
     <!-- Ende Dialog muß ich nachher übernehmen -->
     <script>
         "use strict";
@@ -58,15 +62,16 @@
         }
 
         function machAusgeblendeteTagsString(reso) {
-            ausgeblendeteTagsString = reso + " (Ausgeblendete Tags: " + blacklist + ")";
+            // ausgeblendeteTagsString = reso + " (Ausgeblendete Tags: " + blacklist + ")";
+            ausgeblendeteTagsString = reso + " (Ausgeblendete Tags: ";
         }
 
         // Hier kommt die Verarbeitung des Klicks auf den 'OK' Button im 'tagDialog'
         // Mit 'OK' wird der Tag auf die Blacklist geschrieben
         tagAufBlacklist.addEventListener("click", () => {
-            console.log(blacklist)
+            // console.log(blacklist)
             blacklist.push(gewaehlterTag.textContent);
-            console.log(blacklist)
+            // console.log(blacklist)
             tagDialog.close();
             bisherigeSchlagzeilenLoeschen();
             //ausgeblendeteTagsString = " (Ausgeblendete Tags: " + blacklist + ")";
@@ -74,10 +79,29 @@
             // startRessort = document.getElementsByTagName("h3");
             // console.log(gewaehltesRessort)
             startRessort[0].textContent = ausgeblendeteTagsString;
+            machButtonAusTag(blacklist);
             urlLesen();
         });
 
+        // Hier kommt die Verarbeitung des Klicks auf den 'OK' Button im 'blacklistTagDialog'
+        // Mit 'OK' wird der Tag aus der Blacklist herausgenommen
+        tagRausAusBlacklist.addEventListener("click", () => {
+            console.log(blacklist)
+            // blacklist.push(gewaehlterTag.textContent);
+            // // console.log(blacklist)
+            blacklistTagDialog.close();
+            // bisherigeSchlagzeilenLoeschen();
+            // //ausgeblendeteTagsString = " (Ausgeblendete Tags: " + blacklist + ")";
+            // machAusgeblendeteTagsString(gewaehltesRessort);
+            // // startRessort = document.getElementsByTagName("h3");
+            // // console.log(gewaehltesRessort)
+            // startRessort[0].textContent = ausgeblendeteTagsString;
+            // machButtonAusTag(blacklist);
+            // urlLesen();
+        });
+
         let gewaehlterTag = document.getElementById("derTag");
+        let gewaehlterBlacklistTag = document.getElementById("derBlacklistTag");
         console.log(gewaehlterTag)
 
 
@@ -193,11 +217,28 @@
                     // gewaehltesRessort[0].textContent = knopf.textContent + ausgeblendeteTagsString;
                     startRessort[0].textContent = ausgeblendeteTagsString;
                     bisherigeSchlagzeilenLoeschen();
+                    machButtonAusTag(blacklist);
                     urlLesen(knopf.textContent);
                 })
             }
         }
 
+        function machButtonAusTag(tagArray) {
+            // Tags der Meldung als Buttons ausgeben
+            for (let einzelnerTag of tagArray) {
+                let tagButton = document.createElement("button");
+                tagButton.textContent = einzelnerTag;
+                startRessort[0].appendChild(tagButton);
+
+                // Rechtsklick auf BlacklistButton verarbeiten
+                tagButton.oncontextmenu = function (event) {
+                    event.preventDefault();
+                    gewaehlterBlacklistTag.textContent = tagButton.textContent;
+                    blacklistTagDialog.showModal();
+                }
+                // Rechtsklick auf Ressortbuttons verarbeiten sollte hier noch rein
+            }
+        }
 
         // Programmsteuerung
         // let defaultRessort = "sport"
@@ -205,12 +246,16 @@
         let letzterAufrufDesRessorts;
         let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
         const letzteAufrufe = JSON.parse(localStorage.getItem("Ressortaufrufe"));
+
+        // Blacklist sollte in localStorage stehen
         let blacklist = ["Fußball", "Basketball", "Eishockey", "Israel", "Ukraine"];
+
         // let ausgeblendeteTagsString = " (Ausgeblendete Tags: " + blacklist + ")";
         let ausgeblendeteTagsString;
         machAusgeblendeteTagsString("Sport");
         let startRessort = document.getElementsByTagName("h3");
         startRessort[0].textContent = ausgeblendeteTagsString;
+        machButtonAusTag(blacklist);
 
         try {
             Object.keys(letzteAufrufe).length > 0;
