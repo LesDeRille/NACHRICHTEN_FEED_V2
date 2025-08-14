@@ -168,7 +168,7 @@
         }
 
         function ressortButtonsErzeugen() {
-            let gewaehltesRessort = document.getElementsByTagName("h3");
+            // let gewaehltesRessort = document.getElementsByTagName("h3");
             //let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
             let knopfPosition = document.getElementById("ressorts");
 
@@ -187,7 +187,8 @@
                     // gewaehltesRessort[0].textContent = knopf.textContent
                     machAusgeblendeteTagsString(knopf.textContent);
                     // gewaehltesRessort[0].textContent = knopf.textContent + " (Ausgeblendete Tags: " + blacklist + ")"
-                    gewaehltesRessort[0].textContent = knopf.textContent + ausgeblendeteTagsString;
+                    // gewaehltesRessort[0].textContent = knopf.textContent + ausgeblendeteTagsString;
+                    startRessort[0].textContent = ausgeblendeteTagsString;
                     bisherigeSchlagzeilenLoeschen();
                     urlLesen(knopf.textContent);
                 })
