@@ -70,9 +70,9 @@
             tagDialog.close();
             bisherigeSchlagzeilenLoeschen();
             //ausgeblendeteTagsString = " (Ausgeblendete Tags: " + blacklist + ")";
-            machAusgeblendeteTagsString("lala");
-            startRessort = document.getElementsByTagName("h3");
-            console.log(gewaehltesRessort)
+            machAusgeblendeteTagsString(gewaehltesRessort);
+            // startRessort = document.getElementsByTagName("h3");
+            // console.log(gewaehltesRessort)
             startRessort[0].textContent = ausgeblendeteTagsString;
             urlLesen();
         });
@@ -167,6 +167,8 @@
             }
         }
 
+
+        let gewaehltesRessort;
         function ressortButtonsErzeugen() {
             // let gewaehltesRessort = document.getElementsByTagName("h3");
             //let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
@@ -185,7 +187,8 @@
                     localStorage.setItem("Ressortaufrufe", JSON.stringify(ressortDatum));
 
                     // gewaehltesRessort[0].textContent = knopf.textContent
-                    machAusgeblendeteTagsString(knopf.textContent);
+                    gewaehltesRessort = knopf.textContent // gewaehltesRessort brauche ich globale
+                    machAusgeblendeteTagsString(gewaehltesRessort);
                     // gewaehltesRessort[0].textContent = knopf.textContent + " (Ausgeblendete Tags: " + blacklist + ")"
                     // gewaehltesRessort[0].textContent = knopf.textContent + ausgeblendeteTagsString;
                     startRessort[0].textContent = ausgeblendeteTagsString;
