@@ -86,18 +86,16 @@
         // Hier kommt die Verarbeitung des Klicks auf den 'OK' Button im 'blacklistTagDialog'
         // Mit 'OK' wird der Tag aus der Blacklist herausgenommen
         tagRausAusBlacklist.addEventListener("click", () => {
-            console.log(blacklist)
-            // blacklist.push(gewaehlterTag.textContent);
-            // // console.log(blacklist)
+            console.log(blacklist);
+            const index = blacklist.indexOf(gewaehlterBlacklistTag.textContent);
+            console.log(index)
+            blacklist.splice(index, 1); // 2nd parameter means remove one item only
             blacklistTagDialog.close();
-            // bisherigeSchlagzeilenLoeschen();
-            // //ausgeblendeteTagsString = " (Ausgeblendete Tags: " + blacklist + ")";
-            // machAusgeblendeteTagsString(gewaehltesRessort);
-            // // startRessort = document.getElementsByTagName("h3");
-            // // console.log(gewaehltesRessort)
-            // startRessort[0].textContent = ausgeblendeteTagsString;
-            // machButtonAusTag(blacklist);
-            // urlLesen();
+            bisherigeSchlagzeilenLoeschen();
+            machAusgeblendeteTagsString(gewaehltesRessort);
+            startRessort[0].textContent = ausgeblendeteTagsString;
+            machButtonAusTag(blacklist);
+            urlLesen();
         });
 
         let gewaehlterTag = document.getElementById("derTag");
