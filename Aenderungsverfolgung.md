@@ -1,12 +1,35 @@
 ## Änderungshistorie
 
 #
+### tagesschau_2025_08_16_V01
+
+#### Basis: tagesschau_2025_08_15_V01
+
+#### Änderung:
+* try/catch bei 'letzte Aufrufe' nach weiter oben verschoben. Da gehört es thematisch hin
+* 'knopf' in 'ressortButton' umgetauft
+
+#### ToDo:
+* Optisch aufbereiten
+* gelesene markieren
+* Refresh-Knopf (oder einfach neu laden?)
+* Blacklist in localStorage
+* Geht auch die ganze Meldung einzufärben? Jetzt, wo ich es verstanden habe?
+* localStorage exportieren, damit ich es auf dem iPad oder einem anderen Browser einlesen kann
+* nutze ich überhaupt alle vorhandenen ressorts? Bis jetzt sind die fest vorgegeben. Kann ich die Ressorts dynamisch festlegen? Es könnten ja auch mal welche dazukommen
+* Nach den Blacklist Buttons fehlt in der <h3> eine schließende Klammer
+* Füge ich gleich nach dem Start der App einen Tag zur Blacklist hinzu, steht in <h3> kein Ressortname mehr
+* für meldung als Button ausgeben gibt es jetzt eine function machButtonAusTag. Es steht aber auch noch einmal extra im Quelltext, das muß ich zusammenfassen wegen DRY
+* Handling prüfen. Manchmal wechselt er des Ressort, wenn man die Tags ändert
+
+
+#
 ### tagesschau_2025_08_15_V01
 
 #### Basis: tagesschau_2025_08_14_V04
 
 #### Änderung:
-* nicht mehr nachvollziehbar
+* nicht mehr nachvollziehbar, es wird auch kein Unterschied zu vorher angezeigt
 
 #### ToDo:
 * Optisch aufbereiten

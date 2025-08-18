@@ -197,26 +197,26 @@
             let knopfPosition = document.getElementById("ressorts");
 
             for (let ressort of ressorts) {
-                let knopf = document.createElement("button");
-                knopf.textContent = ressort
-                knopfPosition.appendChild(knopf)
-                knopf.addEventListener("click", () => {
+                let ressortButton = document.createElement("button");
+                ressortButton.textContent = ressort
+                knopfPosition.appendChild(ressortButton)
+                ressortButton.addEventListener("click", () => {
                     let ressortDatum = JSON.parse(localStorage.getItem("Ressortaufrufe"));
-                    letzterAufrufDesRessorts = ressortDatum[knopf.textContent];
+                    letzterAufrufDesRessorts = ressortDatum[ressortButton.textContent];
                     // Aktualisierung des Aufrufdatums des aktuellen Ressorts
-                    ressortDatum[knopf.textContent] = Date();
+                    ressortDatum[ressortButton.textContent] = Date();
                     let werte = JSON.stringify(ressortDatum);
                     localStorage.setItem("Ressortaufrufe", JSON.stringify(ressortDatum));
 
-                    // gewaehltesRessort[0].textContent = knopf.textContent
-                    gewaehltesRessort = knopf.textContent // gewaehltesRessort brauche ich globale
+                    // gewaehltesRessort[0].textContent = ressortButton.textContent
+                    gewaehltesRessort = ressortButton.textContent // gewaehltesRessort brauche ich globale
                     machAusgeblendeteTagsString(gewaehltesRessort);
-                    // gewaehltesRessort[0].textContent = knopf.textContent + " (Ausgeblendete Tags: " + blacklist + ")"
-                    // gewaehltesRessort[0].textContent = knopf.textContent + ausgeblendeteTagsString;
+                    // gewaehltesRessort[0].textContent = ressortButton.textContent + " (Ausgeblendete Tags: " + blacklist + ")"
+                    // gewaehltesRessort[0].textContent = ressortButton.textContent + ausgeblendeteTagsString;
                     startRessort[0].textContent = ausgeblendeteTagsString;
                     bisherigeSchlagzeilenLoeschen();
                     machButtonAusTag(blacklist);
-                    urlLesen(knopf.textContent);
+                    urlLesen(ressortButton.textContent);
                 })
             }
         }
@@ -244,6 +244,15 @@
         let letzterAufrufDesRessorts;
         let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
         const letzteAufrufe = JSON.parse(localStorage.getItem("Ressortaufrufe"));
+        try {
+            Object.keys(letzteAufrufe).length > 0;
+            weiterImNormalenModus();
+        }
+        catch {
+            // Es sind keine Daten da. Oder Du bist im privaten Modus");
+            weiterImPrivatenModus();
+        }
+        
 
         // Blacklist sollte in localStorage stehen
         let blacklist = ["Fußball", "Basketball", "Eishockey", "Israel", "Ukraine"];
@@ -255,14 +264,7 @@
         startRessort[0].textContent = ausgeblendeteTagsString;
         machButtonAusTag(blacklist);
 
-        try {
-            Object.keys(letzteAufrufe).length > 0;
-            weiterImNormalenModus();
-        }
-        catch {
-            // Es sind keine Daten da. Oder Du bist im privaten Modus");
-            weiterImPrivatenModus();
-        }
+
 
         function weiterImNormalenModus() {
             letzterAufrufDesRessorts = letzteAufrufe["Sport"]
