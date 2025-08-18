@@ -277,10 +277,8 @@
             weiterImPrivatenModus();
         }
 
-
-        // Blacklist sollte in localStorage stehen
-        let blacklist = ["Fußball", "Basketball", "Eishockey", "Israel", "Ukraine"];
-        inLocalStorageAblegen("Blacklist", blacklist)
+        // Blacklist aus localStorage lesen
+        let blacklist = JSON.parse(localStorage.getItem("datenNachrichtenFeed")).Blacklist;
 
         // let ausgeblendeteTagsString = " (Ausgeblendete Tags: " + blacklist + ")";
         let ausgeblendeteTagsString;
