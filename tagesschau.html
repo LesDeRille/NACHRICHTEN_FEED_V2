@@ -71,6 +71,7 @@
         tagAufBlacklist.addEventListener("click", () => {
             // console.log(blacklist)
             blacklist.push(gewaehlterTag.textContent);
+            inLocalStorageAblegen("Blacklist", blacklist);
             // console.log(blacklist)
             tagDialog.close();
             bisherigeSchlagzeilenLoeschen();
@@ -90,6 +91,7 @@
             const index = blacklist.indexOf(gewaehlterBlacklistTag.textContent);
             console.log(index)
             blacklist.splice(index, 1); // 2nd parameter means remove one item only
+            inLocalStorageAblegen("Blacklist", blacklist);
             blacklistTagDialog.close();
             bisherigeSchlagzeilenLoeschen();
             machAusgeblendeteTagsString(gewaehltesRessort);
