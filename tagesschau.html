@@ -205,11 +205,12 @@
                     letzterAufrufDesRessorts = ressortDatum[ressortButton.textContent];
                     // Aktualisierung des Aufrufdatums des aktuellen Ressorts
                     ressortDatum[ressortButton.textContent] = Date();
-                    let werte = JSON.stringify(ressortDatum);
+                    // let werte = JSON.stringify(ressortDatum);
                     localStorage.setItem("Ressortaufrufe", JSON.stringify(ressortDatum));
+                    inLocalStorageAblegen("Ressortaufrufe", ressortDatum);
 
                     // gewaehltesRessort[0].textContent = ressortButton.textContent
-                    gewaehltesRessort = ressortButton.textContent // gewaehltesRessort brauche ich globale
+                    gewaehltesRessort = ressortButton.textContent // gewaehltesRessort brauche ich global
                     machAusgeblendeteTagsString(gewaehltesRessort);
                     // gewaehltesRessort[0].textContent = ressortButton.textContent + " (Ausgeblendete Tags: " + blacklist + ")"
                     // gewaehltesRessort[0].textContent = ressortButton.textContent + ausgeblendeteTagsString;
@@ -238,7 +239,24 @@
             }
         }
 
+        function inLocalStorageAblegen(datenname, daten) {
+            console.log(datenname)
+            console.log(daten)
+            // localStorage.setItem("Ressortaufrufe", JSON.stringify(ressortDatum));
+            localStorage.setItem(datenname, JSON.stringify(daten));
+            // Alternative Speicherung unter einem eindeutigen Oberbegriff pro Programm
+            let datenAlsObject = {};
+            datenAlsObject[datenname] = daten
+            console.log(datenAlsObject);
+            localStorage.setItem("datenNachrichtenFeed", JSON.stringify(datenAlsObject));
+            let datencheck = JSON.parse(localStorage.getItem("datenNachrichtenFeed"));
+            console.log(datencheck[datenname])
+        }
+
+        // #####################################
         // Programmsteuerung
+        // #####################################
+
         // let defaultRessort = "sport"
 
         let letzterAufrufDesRessorts;
@@ -252,7 +270,7 @@
             // Es sind keine Daten da. Oder Du bist im privaten Modus");
             weiterImPrivatenModus();
         }
-        
+
 
         // Blacklist sollte in localStorage stehen
         let blacklist = ["Fußball", "Basketball", "Eishockey", "Israel", "Ukraine"];
