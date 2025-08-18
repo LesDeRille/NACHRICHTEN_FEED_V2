@@ -180,7 +180,8 @@
                 ressortButton.textContent = ressort
                 knopfPosition.appendChild(ressortButton)
                 ressortButton.addEventListener("click", () => {
-                    let ressortDatum = JSON.parse(localStorage.getItem("Ressortaufrufe"));
+                    // let ressortDatum = JSON.parse(localStorage.getItem("Ressortaufrufe"));
+                    let ressortDatum = JSON.parse(localStorage.getItem("datenNachrichtenFeed")).Ressortaufrufe;
                     letzterAufrufDesRessorts = ressortDatum[ressortButton.textContent];
                     // Aktualisierung des Aufrufdatums des aktuellen Ressorts
                     ressortDatum[ressortButton.textContent] = Date();
@@ -222,9 +223,11 @@
             inhaltVonLocalStorage[datenname] = daten;
 
             localStorage.setItem("datenNachrichtenFeed", JSON.stringify(inhaltVonLocalStorage));
-            let datencheck = JSON.parse(localStorage.getItem("datenNachrichtenFeed"));
+            // let datencheck = JSON.parse(localStorage.getItem("datenNachrichtenFeed"));
         }
 
+
+        
         // #####################################
         // Programmsteuerung
         // #####################################
@@ -232,7 +235,8 @@
 
         let letzterAufrufDesRessorts;
         let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
-        const letzteAufrufe = JSON.parse(localStorage.getItem("Ressortaufrufe"));
+        // const letzteAufrufe = JSON.parse(localStorage.getItem("Ressortaufrufe"));
+        const letzteAufrufe = JSON.parse(localStorage.getItem("datenNachrichtenFeed")).Ressortaufrufe;
         try {
             Object.keys(letzteAufrufe).length > 0;
             weiterImNormalenModus();
