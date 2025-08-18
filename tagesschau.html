@@ -4,8 +4,6 @@
 <head>
     <title>Tagesschau</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <!-- weitere Kopfinformationen -->
-    <!-- Kommentare werden im Browser nicht angezeigt. -->
 </head>
 
 <style>
@@ -19,18 +17,14 @@
 
 <body>
     <h2>Tagesschau</h2>
-    <!-- <h3>Sport</h3> -->
     <!-- leere Überschrift, wird in der Programmsteuerung befüllt -->
     <h3></h3>
 
     <div id="ressorts">
     </div>
     <dl id="Schlagzeilen">
-        <!-- <dt>Beast of Bodmin</dt>
-        <dd>A large feline inhabiting Bodmin Moor.</dd> -->
     </dl>
 
-    <!-- Dialog muß ich nachher übernehmen -->
     <dialog id="tagDialog">
         <p>Tag <em id="derTag"></em> auf Blacklist?</p>
         <p><input type="submit" value="OK" id="tagAufBlacklist"></p>
@@ -39,7 +33,6 @@
         <p>Tag <em id="derBlacklistTag"></em> aus Blacklist rausnehmen?</p>
         <p><input type="submit" value="OK" id="tagRausAusBlacklist"></p>
     </dialog>
-    <!-- Ende Dialog muß ich nachher übernehmen -->
     <script>
         "use strict";
 
@@ -62,23 +55,17 @@
         }
 
         function machAusgeblendeteTagsString(reso) {
-            // ausgeblendeteTagsString = reso + " (Ausgeblendete Tags: " + blacklist + ")";
             ausgeblendeteTagsString = reso + " (Ausgeblendete Tags: ";
         }
 
         // Hier kommt die Verarbeitung des Klicks auf den 'OK' Button im 'tagDialog'
         // Mit 'OK' wird der Tag auf die Blacklist geschrieben
         tagAufBlacklist.addEventListener("click", () => {
-            // console.log(blacklist)
             blacklist.push(gewaehlterTag.textContent);
             inLocalStorageAblegen("Blacklist", blacklist);
-            // console.log(blacklist)
             tagDialog.close();
             bisherigeSchlagzeilenLoeschen();
-            //ausgeblendeteTagsString = " (Ausgeblendete Tags: " + blacklist + ")";
             machAusgeblendeteTagsString(gewaehltesRessort);
-            // startRessort = document.getElementsByTagName("h3");
-            // console.log(gewaehltesRessort)
             startRessort[0].textContent = ausgeblendeteTagsString;
             machButtonAusTag(blacklist);
             urlLesen();
@@ -87,9 +74,7 @@
         // Hier kommt die Verarbeitung des Klicks auf den 'OK' Button im 'blacklistTagDialog'
         // Mit 'OK' wird der Tag aus der Blacklist herausgenommen
         tagRausAusBlacklist.addEventListener("click", () => {
-            console.log(blacklist);
             const index = blacklist.indexOf(gewaehlterBlacklistTag.textContent);
-            console.log(index)
             blacklist.splice(index, 1); // 2nd parameter means remove one item only
             inLocalStorageAblegen("Blacklist", blacklist);
             blacklistTagDialog.close();
@@ -117,8 +102,6 @@
                 let neuerAnker = document.createElement("a");
                 let leerzeile = document.createElement("hr");
                 let datum = document.createElement("span");
-                // Wird gar nicht benutzt?
-                // let alleTags = document.createElement("button");
 
                 // Bausteine der Schlagzeile zusammenklauben
                 neueErsteZeile.textContent = meldung.firstSentence;
@@ -129,7 +112,6 @@
                 // Bausteine der Schlagzeile an neues Listenelement anhängen
                 neuerTitel.appendChild(neuerAnker);
                 neuerTitel.appendChild(datum);
-                // Hauptteil zum nachher ins Hauptprogramm reinkopieren
 
                 // Tags der Meldung als Buttons ausgeben
                 for (let einzelnerTag of alleTagsDerMeldung) {
@@ -144,7 +126,6 @@
                         tagDialog.showModal();
                     }
                 }
-                // Ende Hauptteil zum nachher ins Hauptprogramm reinkopieren
 
                 // Bausteine der Schlagzeile an document anhängen
                 schlagzeilen.appendChild(neuerTitel);
@@ -155,7 +136,7 @@
 
                 // Prüfen, ob die Meldung schon mal eingeblendet wurde
                 function istDieMeldungNeu() {
-                    // Letzte Titelzeile heuausfinden
+                    // Letzte Titelzeile herausfinden
                     let titelzeilen = document.getElementsByTagName("dt");
                     let letzteTitelzeilenNummer = titelzeilen.length - 1;
 
@@ -171,8 +152,6 @@
             };
 
             let alleTagsDerMeldung = meldung.tags.map(x => x.tag);
-            // wird nicht mehr benutzt?
-            //let tagString = alleTagsDerMeldung.toString();
 
             // prüfen, ob ein Tag der Meldung auf der Blacklist ist
             for (let item of meldung.tags) {
@@ -194,8 +173,6 @@
 
         let gewaehltesRessort;
         function ressortButtonsErzeugen() {
-            // let gewaehltesRessort = document.getElementsByTagName("h3");
-            //let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
             let knopfPosition = document.getElementById("ressorts");
 
             for (let ressort of ressorts) {
@@ -207,15 +184,10 @@
                     letzterAufrufDesRessorts = ressortDatum[ressortButton.textContent];
                     // Aktualisierung des Aufrufdatums des aktuellen Ressorts
                     ressortDatum[ressortButton.textContent] = Date();
-                    // let werte = JSON.stringify(ressortDatum);
-                    // localStorage.setItem("Ressortaufrufe", JSON.stringify(ressortDatum));
                     inLocalStorageAblegen("Ressortaufrufe", ressortDatum);
 
-                    // gewaehltesRessort[0].textContent = ressortButton.textContent
                     gewaehltesRessort = ressortButton.textContent // gewaehltesRessort brauche ich global
                     machAusgeblendeteTagsString(gewaehltesRessort);
-                    // gewaehltesRessort[0].textContent = ressortButton.textContent + " (Ausgeblendete Tags: " + blacklist + ")"
-                    // gewaehltesRessort[0].textContent = ressortButton.textContent + ausgeblendeteTagsString;
                     startRessort[0].textContent = ausgeblendeteTagsString;
                     bisherigeSchlagzeilenLoeschen();
                     machButtonAusTag(blacklist);
@@ -223,6 +195,7 @@
                 })
             }
         }
+
 
         function machButtonAusTag(tagArray) {
             // Tags der Meldung als Buttons ausgeben
@@ -241,31 +214,21 @@
             }
         }
 
+
         function inLocalStorageAblegen(datenname, daten) {
+            // Bisherigen Inhalt einlesen
             let inhaltVonLocalStorage = JSON.parse(localStorage.getItem("datenNachrichtenFeed"));
-
-            // console.log("bisher ", inhaltVonLocalStorage)
-            // console.log(datenname)
-            // console.log(daten)
-            // // localStorage.setItem("Ressortaufrufe", JSON.stringify(ressortDatum));
-
-            // localStorage.setItem(datenname, JSON.stringify(daten));
-            // // Alternative Speicherung unter einem eindeutigen Oberbegriff pro Programm
-            // let datenAlsObject = {};
-            // datenAlsObject[datenname] = daten
-            // console.log(datenAlsObject);
+            // Neue Daten anhängen
             inhaltVonLocalStorage[datenname] = daten;
-            // console.log(inhaltVonLocalStorage)
+
             localStorage.setItem("datenNachrichtenFeed", JSON.stringify(inhaltVonLocalStorage));
             let datencheck = JSON.parse(localStorage.getItem("datenNachrichtenFeed"));
-            console.log(datencheck)
         }
 
         // #####################################
         // Programmsteuerung
         // #####################################
 
-        // let defaultRessort = "sport"
 
         let letzterAufrufDesRessorts;
         let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
@@ -282,9 +245,10 @@
         // Blacklist aus localStorage lesen
         let blacklist = JSON.parse(localStorage.getItem("datenNachrichtenFeed")).Blacklist;
 
-        // let ausgeblendeteTagsString = " (Ausgeblendete Tags: " + blacklist + ")";
+        // Wofür sind diese beiden Zeilen? Braucht's die noch?
         let ausgeblendeteTagsString;
         machAusgeblendeteTagsString("Sport");
+
         let startRessort = document.getElementsByTagName("h3");
         startRessort[0].textContent = ausgeblendeteTagsString;
         machButtonAusTag(blacklist);
@@ -300,12 +264,9 @@
             // oder weil Safari im privaten Modus nicht aus localStorage lesen kann,
             // werden hier für jedes Ressort Startdaten erstellt
             const startdatum = new Date("1970-01-01");
-            // let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
             let ressortDatum = {};
             for (ressort of ressorts) {
                 ressortDatum[ressort] = startdatum;
-                // let werte = JSON.stringify(ressortDatum);
-                // localStorage.setItem("Ressortaufrufe", JSON.stringify(ressortDatum));
                 inLocalStorageAblegen("Ressortaufrufe", ressortDatum);
             }
             letzterAufrufDesRessorts = startdatum;
