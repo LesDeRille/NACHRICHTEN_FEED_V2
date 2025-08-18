@@ -206,7 +206,7 @@
                     // Aktualisierung des Aufrufdatums des aktuellen Ressorts
                     ressortDatum[ressortButton.textContent] = Date();
                     // let werte = JSON.stringify(ressortDatum);
-                    localStorage.setItem("Ressortaufrufe", JSON.stringify(ressortDatum));
+                    // localStorage.setItem("Ressortaufrufe", JSON.stringify(ressortDatum));
                     inLocalStorageAblegen("Ressortaufrufe", ressortDatum);
 
                     // gewaehltesRessort[0].textContent = ressortButton.textContent
@@ -240,17 +240,23 @@
         }
 
         function inLocalStorageAblegen(datenname, daten) {
-            console.log(datenname)
-            console.log(daten)
-            // localStorage.setItem("Ressortaufrufe", JSON.stringify(ressortDatum));
-            localStorage.setItem(datenname, JSON.stringify(daten));
-            // Alternative Speicherung unter einem eindeutigen Oberbegriff pro Programm
-            let datenAlsObject = {};
-            datenAlsObject[datenname] = daten
-            console.log(datenAlsObject);
-            localStorage.setItem("datenNachrichtenFeed", JSON.stringify(datenAlsObject));
+            let inhaltVonLocalStorage = JSON.parse(localStorage.getItem("datenNachrichtenFeed"));
+
+            // console.log("bisher ", inhaltVonLocalStorage)
+            // console.log(datenname)
+            // console.log(daten)
+            // // localStorage.setItem("Ressortaufrufe", JSON.stringify(ressortDatum));
+
+            // localStorage.setItem(datenname, JSON.stringify(daten));
+            // // Alternative Speicherung unter einem eindeutigen Oberbegriff pro Programm
+            // let datenAlsObject = {};
+            // datenAlsObject[datenname] = daten
+            // console.log(datenAlsObject);
+            inhaltVonLocalStorage[datenname] = daten;
+            // console.log(inhaltVonLocalStorage)
+            localStorage.setItem("datenNachrichtenFeed", JSON.stringify(inhaltVonLocalStorage));
             let datencheck = JSON.parse(localStorage.getItem("datenNachrichtenFeed"));
-            console.log(datencheck[datenname])
+            console.log(datencheck)
         }
 
         // #####################################
@@ -274,6 +280,7 @@
 
         // Blacklist sollte in localStorage stehen
         let blacklist = ["Fußball", "Basketball", "Eishockey", "Israel", "Ukraine"];
+        inLocalStorageAblegen("Blacklist", blacklist)
 
         // let ausgeblendeteTagsString = " (Ausgeblendete Tags: " + blacklist + ")";
         let ausgeblendeteTagsString;
@@ -297,8 +304,9 @@
             let ressortDatum = {};
             for (ressort of ressorts) {
                 ressortDatum[ressort] = startdatum;
-                let werte = JSON.stringify(ressortDatum);
-                localStorage.setItem("Ressortaufrufe", JSON.stringify(ressortDatum));
+                // let werte = JSON.stringify(ressortDatum);
+                // localStorage.setItem("Ressortaufrufe", JSON.stringify(ressortDatum));
+                inLocalStorageAblegen("Ressortaufrufe", ressortDatum);
             }
             letzterAufrufDesRessorts = startdatum;
         }
