@@ -68,7 +68,7 @@
             machAusgeblendeteTagsString(gewaehltesRessort);
             startRessort[0].textContent = ausgeblendeteTagsString;
             // machButtonAusTag(blacklist);
-            machButtonAusTag(blacklist, startRessort[0]);
+            machButtonAusTag(blacklist, startRessort[0], blacklistTagDialog);
             urlLesen();
         });
 
@@ -83,7 +83,7 @@
             machAusgeblendeteTagsString(gewaehltesRessort);
             startRessort[0].textContent = ausgeblendeteTagsString;
             // machButtonAusTag(blacklist);
-            machButtonAusTag(blacklist, startRessort[0]);
+            machButtonAusTag(blacklist, startRessort[0], blacklistTagDialog);
             urlLesen();
         });
 
@@ -121,7 +121,7 @@
                     tagButton.textContent = einzelnerTag;
                     neuerTitel.appendChild(tagButton);
 
-                    // Rechtsklick auf Button verarbeiten
+                    // Rechtsklick auf Ressort-Tag-Button verarbeiten
                     tagButton.oncontextmenu = function (event) {
                         event.preventDefault();
                         gewaehlterTag.textContent = tagButton.textContent;
@@ -194,14 +194,14 @@
                     startRessort[0].textContent = ausgeblendeteTagsString;
                     bisherigeSchlagzeilenLoeschen();
                     // machButtonAusTag(blacklist);
-                    machButtonAusTag(blacklist, startRessort[0]);
+                    machButtonAusTag(blacklist, startRessort[0], blacklistTagDialog);
                     urlLesen(ressortButton.textContent);
                 })
             }
         }
 
 
-        function machButtonAusTag(tagArray, buttonAusgabeort) {
+        function machButtonAusTag(tagArray, buttonAusgabeort, dialogID) {
             // Tags der Meldung als Buttons ausgeben
             for (let einzelnerTag of tagArray) {
                 let tagButton = document.createElement("button");
@@ -210,12 +210,14 @@
                 buttonAusgabeort.appendChild(tagButton);
 
                 // Rechtsklick auf BlacklistButton verarbeiten
+                // anhand tagDialog unterscheidbar
                 tagButton.oncontextmenu = function (event) {
                     event.preventDefault();
                     gewaehlterBlacklistTag.textContent = tagButton.textContent;
-                    blacklistTagDialog.showModal();
+                    // blacklistTagDialog.showModal();
+                    dialogID.showModal();
                 }
-                // Rechtsklick auf Ressortbuttons verarbeiten sollte hier noch rein
+                // Rechtsklick auf Ressort-Tag-Button verarbeiten sollte hier noch rein
             }
         }
 
@@ -260,7 +262,7 @@
         let startRessort = document.getElementsByTagName("h3");
         startRessort[0].textContent = ausgeblendeteTagsString;
         // machButtonAusTag(blacklist);
-        machButtonAusTag(blacklist, startRessort[0]);
+        machButtonAusTag(blacklist, startRessort[0], blacklistTagDialog);
 
 
 
