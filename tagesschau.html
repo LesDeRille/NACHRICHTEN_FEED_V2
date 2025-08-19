@@ -67,7 +67,8 @@
             bisherigeSchlagzeilenLoeschen();
             machAusgeblendeteTagsString(gewaehltesRessort);
             startRessort[0].textContent = ausgeblendeteTagsString;
-            machButtonAusTag(blacklist);
+            // machButtonAusTag(blacklist);
+            machButtonAusTag(blacklist, startRessort[0]);
             urlLesen();
         });
 
@@ -81,7 +82,8 @@
             bisherigeSchlagzeilenLoeschen();
             machAusgeblendeteTagsString(gewaehltesRessort);
             startRessort[0].textContent = ausgeblendeteTagsString;
-            machButtonAusTag(blacklist);
+            // machButtonAusTag(blacklist);
+            machButtonAusTag(blacklist, startRessort[0]);
             urlLesen();
         });
 
@@ -191,19 +193,21 @@
                     machAusgeblendeteTagsString(gewaehltesRessort);
                     startRessort[0].textContent = ausgeblendeteTagsString;
                     bisherigeSchlagzeilenLoeschen();
-                    machButtonAusTag(blacklist);
+                    // machButtonAusTag(blacklist);
+                    machButtonAusTag(blacklist, startRessort[0]);
                     urlLesen(ressortButton.textContent);
                 })
             }
         }
 
 
-        function machButtonAusTag(tagArray) {
+        function machButtonAusTag(tagArray, buttonAusgabeort) {
             // Tags der Meldung als Buttons ausgeben
             for (let einzelnerTag of tagArray) {
                 let tagButton = document.createElement("button");
                 tagButton.textContent = einzelnerTag;
-                startRessort[0].appendChild(tagButton);
+                // startRessort[0].appendChild(tagButton);
+                buttonAusgabeort.appendChild(tagButton);
 
                 // Rechtsklick auf BlacklistButton verarbeiten
                 tagButton.oncontextmenu = function (event) {
@@ -227,7 +231,7 @@
         }
 
 
-        
+
         // #####################################
         // Programmsteuerung
         // #####################################
@@ -255,7 +259,8 @@
 
         let startRessort = document.getElementsByTagName("h3");
         startRessort[0].textContent = ausgeblendeteTagsString;
-        machButtonAusTag(blacklist);
+        // machButtonAusTag(blacklist);
+        machButtonAusTag(blacklist, startRessort[0]);
 
 
 
