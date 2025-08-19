@@ -13,12 +13,20 @@
         font-weight: bold;
         font-size: 120%;
     }
+
+    .gelb {
+        background-color: yellow;
+    }
+    .rot {
+        background-color: red;
+    }
 </style>
 
 <body>
     <h2>Tagesschau</h2>
     <!-- leere Überschrift, wird in der Programmsteuerung befüllt -->
-    <h3></h3>
+    <h3 class="gelb"></h3>
+    <h3 class="rot"></h3>
 
     <div id="ressorts">
     </div>
@@ -261,7 +269,8 @@
         let ausgeblendeteTagsString;
         machAusgeblendeteTagsString("Sport");
 
-        let startRessort = document.getElementsByTagName("h3");
+        // let startRessort = document.getElementsByTagName("h3");
+        let startRessort = document.getElementsByClassName("rot");
         startRessort[0].textContent = ausgeblendeteTagsString;
         // machButtonAusTag(blacklist);
         machButtonAusTag(blacklist, startRessort[0], blacklistTagDialog, gewaehlterBlacklistTag);
