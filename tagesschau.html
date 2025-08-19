@@ -116,18 +116,19 @@
                 neuerTitel.appendChild(datum);
 
                 // Tags der Meldung als Buttons ausgeben
-                for (let einzelnerTag of alleTagsDerMeldung) {
-                    let tagButton = document.createElement("button");
-                    tagButton.textContent = einzelnerTag;
-                    neuerTitel.appendChild(tagButton);
+                // for (let einzelnerTag of alleTagsDerMeldung) {
+                //     let tagButton = document.createElement("button");
+                //     tagButton.textContent = einzelnerTag;
+                //     neuerTitel.appendChild(tagButton);
 
-                    // Rechtsklick auf Ressort-Tag-Button verarbeiten
-                    tagButton.oncontextmenu = function (event) {
-                        event.preventDefault();
-                        gewaehlterTag.textContent = tagButton.textContent;
-                        tagDialog.showModal();
-                    }
-                }
+                //     // Rechtsklick auf Ressort-Tag-Button verarbeiten
+                //     tagButton.oncontextmenu = function (event) {
+                //         event.preventDefault();
+                //         gewaehlterTag.textContent = tagButton.textContent;
+                //         tagDialog.showModal();
+                //     }
+                // }
+                machButtonAusTag(alleTagsDerMeldung, neuerTitel, tagDialog, gewaehlterTag);
 
                 // Bausteine der Schlagzeile an document anhängen
                 schlagzeilen.appendChild(neuerTitel);
