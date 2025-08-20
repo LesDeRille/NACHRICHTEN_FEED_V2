@@ -100,10 +100,20 @@
             inLocalStorageAblegen("Blacklist", blacklist);
             tagDialog.close();
             bisherigeSchlagzeilenLoeschen();
-            machAusgeblendeteTagsString(gewaehltesRessort);
-            startRessort[0].textContent = ausgeblendeteTagsString;
+            // machAusgeblendeteTagsString(gewaehltesRessort);
+            // startRessort[0].textContent = ausgeblendeteTagsString;
             // machButtonAusTag(blacklist);
-            machButtonAusTag(blacklist, startRessort[0], blacklistTagDialog, gewaehlterBlacklistTag);
+            // console.log(startRessort[0])
+            // machButtonAusTag(blacklist, startRessort[0], blacklistTagDialog, gewaehlterBlacklistTag);
+
+            console.log("ss", blacklistAusgabeort[0].children);
+            for (let i of blacklistAusgabeort[0].children) {
+                console.log(i)
+                // blacklistAusgabeort[0].removeChild(i);
+            }
+            console.log("xx", blacklistAusgabeort[0].children);
+            console.log(blacklist)
+            machButtonAusTag(blacklist, blacklistAusgabeort[0], blacklistTagDialog, gewaehlterBlacklistTag);
             urlLesen();
         });
 
@@ -306,7 +316,9 @@
         // startRessort[0].textContent = ausgeblendeteTagsString;
         startRessort[0].textContent += "Sport";
         // machButtonAusTag(blacklist);
-        let blacklistAusgabeort = document.getElementsByClassName("ausgeblendeteTags")
+        let blacklistAusgabeort = document.getElementsByClassName("ausgeblendeteTags");
+        console.log(blacklistAusgabeort)
+
         // machButtonAusTag(blacklist, startRessort[0], blacklistTagDialog, gewaehlterBlacklistTag);
         machButtonAusTag(blacklist, blacklistAusgabeort[0], blacklistTagDialog, gewaehlterBlacklistTag);
 
