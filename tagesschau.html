@@ -104,7 +104,7 @@
 
         let gewaehlterTag = document.getElementById("derTag");
         let gewaehlterBlacklistTag = document.getElementById("derBlacklistTag");
-        console.log(gewaehlterTag)
+        // console.log(gewaehlterTag)
 
 
         function neueSchlagzeileErzeugen(meldung) {
@@ -208,12 +208,13 @@
                     inLocalStorageAblegen("Ressortaufrufe", ressortDatum);
 
                     gewaehltesRessort = ressortButton.textContent // gewaehltesRessort brauche ich global
+                    console.log(ressortButton.textContent)
                     machAusgeblendeteTagsString(gewaehltesRessort);
                     // startRessort[0].textContent = ausgeblendeteTagsString;
                     startRessort[0].textContent = gewaehltesRessort;
                     bisherigeSchlagzeilenLoeschen();
                     // machButtonAusTag(blacklist);
-                    machButtonAusTag(blacklist, startRessort[0], blacklistTagDialog, gewaehlterBlacklistTag);
+                    // machButtonAusTag(blacklist, startRessort[0], blacklistTagDialog, gewaehlterBlacklistTag);
                     urlLesen(ressortButton.textContent);
                 })
             }
@@ -281,6 +282,7 @@
 
         // let startRessort = document.getElementsByTagName("h3");
         let startRessort = document.getElementsByClassName("angezeigtesRessort");
+        console.log(startRessort[0].textContent)
         // startRessort[0].textContent = ausgeblendeteTagsString;
         startRessort[0].textContent += "Sport";
         // machButtonAusTag(blacklist);
