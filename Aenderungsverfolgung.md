@@ -1,6 +1,28 @@
 ## Änderungshistorie
 
 #
+### tagesschau_2025_08_20_V01
+
+#### Basis: tagesschau_2025_08_19_V05
+
+#### Änderung:
+* Überschriften umsortiert. Beim Durchklicken der Ressorts stimmt es aber noch nicht
+
+#### ToDo:
+* Speicherung des letzten Ressortaufrufs scheint nicht mehr zu funktionieren
+* Optisch aufbereiten
+* gelesene markieren
+* Refresh-Knopf (oder einfach neu laden?)
+* Geht auch die ganze Meldung einzufärben? Jetzt, wo ich es verstanden habe?
+* localStorage exportieren, damit ich es auf dem iPad oder einem anderen Browser einlesen kann
+* nutze ich überhaupt alle vorhandenen ressorts? Bis jetzt sind die fest vorgegeben. Kann ich die Ressorts dynamisch festlegen? Es könnten ja auch mal welche dazukommen
+* Nach den Blacklist Buttons fehlt in der <h3> eine schließende Klammer
+* Füge ich gleich nach dem Start der App einen Tag zur Blacklist hinzu, steht in <h3> kein Ressortname mehr
+* Handling prüfen. Manchmal wechselt er des Ressort, wenn man die Tags ändert
+* Die ausgeblendeten Tags gehören nicht hinter das Ressort. Sie gelten ja generell für alle Ressorts
+
+
+#
 ### tagesschau_2025_08_19_V05
 
 #### Basis: tagesschau_2025_08_19_V04

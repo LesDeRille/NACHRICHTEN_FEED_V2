@@ -17,6 +17,7 @@
     .gelb {
         background-color: yellow;
     }
+
     .rot {
         background-color: red;
     }
@@ -25,11 +26,17 @@
 <body>
     <h2>Tagesschau</h2>
     <!-- leere Überschrift, wird in der Programmsteuerung befüllt -->
+    <h3 class="angezeigtesRessort">Angezeigtes Ressort: </h3>
+    <h3 class="waehlbareRessorts">Wählbare Ressorts: </h3>
+    <div id="ressorts">
+    </div>
+    <h3 class="ausgeblendeteTags">Blockierte Schlagworte: </h3>
     <h3 class="gelb"></h3>
     <h3 class="rot"></h3>
 
-    <div id="ressorts">
-    </div>
+    <hr>
+    <hr>
+
     <dl id="Schlagzeilen">
     </dl>
 
@@ -184,12 +191,14 @@
 
         let gewaehltesRessort;
         function ressortButtonsErzeugen() {
-            let knopfPosition = document.getElementById("ressorts");
+            // let knopfPosition = document.getElementById("ressorts");
+            let knopfPosition = document.getElementsByClassName("waehlbareRessorts");
 
             for (let ressort of ressorts) {
                 let ressortButton = document.createElement("button");
                 ressortButton.textContent = ressort
-                knopfPosition.appendChild(ressortButton)
+                // knopfPosition.appendChild(ressortButton)
+                knopfPosition[0].appendChild(ressortButton)
                 ressortButton.addEventListener("click", () => {
                     // let ressortDatum = JSON.parse(localStorage.getItem("Ressortaufrufe"));
                     let ressortDatum = JSON.parse(localStorage.getItem("datenNachrichtenFeed")).Ressortaufrufe;
@@ -200,7 +209,8 @@
 
                     gewaehltesRessort = ressortButton.textContent // gewaehltesRessort brauche ich global
                     machAusgeblendeteTagsString(gewaehltesRessort);
-                    startRessort[0].textContent = ausgeblendeteTagsString;
+                    // startRessort[0].textContent = ausgeblendeteTagsString;
+                    startRessort[0].textContent = gewaehltesRessort;
                     bisherigeSchlagzeilenLoeschen();
                     // machButtonAusTag(blacklist);
                     machButtonAusTag(blacklist, startRessort[0], blacklistTagDialog, gewaehlterBlacklistTag);
@@ -270,10 +280,13 @@
         machAusgeblendeteTagsString("Sport");
 
         // let startRessort = document.getElementsByTagName("h3");
-        let startRessort = document.getElementsByClassName("rot");
-        startRessort[0].textContent = ausgeblendeteTagsString;
+        let startRessort = document.getElementsByClassName("angezeigtesRessort");
+        // startRessort[0].textContent = ausgeblendeteTagsString;
+        startRessort[0].textContent += "Sport";
         // machButtonAusTag(blacklist);
-        machButtonAusTag(blacklist, startRessort[0], blacklistTagDialog, gewaehlterBlacklistTag);
+        let blacklistAusgabeort = document.getElementsByClassName("ausgeblendeteTags")
+        // machButtonAusTag(blacklist, startRessort[0], blacklistTagDialog, gewaehlterBlacklistTag);
+        machButtonAusTag(blacklist, blacklistAusgabeort[0], blacklistTagDialog, gewaehlterBlacklistTag);
 
 
 
