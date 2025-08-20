@@ -7,6 +7,14 @@
 </head>
 
 <style>
+    mark {
+        background: white;
+        font-weight: bold;
+        font-size: 150%;
+        border-radius: 3px;
+        padding: 3px;
+    }
+
     a {
         color: #0060B6;
         text-decoration: none;
@@ -14,25 +22,36 @@
         font-size: 120%;
     }
 
-    .gelb {
-        background-color: yellow;
+    .ueberschriften {
+        background-color: rgb(68, 111, 177);
+        color: rgb(255, 255, 255);
+        padding: 3px;
     }
 
-    .rot {
-        background-color: red;
+    .ausgeblendeteTags {
+        background-color: rgb(233, 130, 19);
+        color: rgb(255, 255, 255);
+        padding: 3px;
     }
 </style>
 
 <body>
-    <h2>Tagesschau</h2>
-    <!-- leere Überschrift, wird in der Programmsteuerung befüllt -->
-    <h3 class="angezeigtesRessort">Angezeigtes Ressort: </h3>
-    <h3 class="waehlbareRessorts">Wählbare Ressorts: </h3>
-    <div id="ressorts">
+    <div class="ueberschriften">
+
+        <h1>Tagesschau</h1>
+        <!-- leere Überschrift, wird in der Programmsteuerung befüllt -->
+        <!-- <h3 class="angezeigtesRessort">Angezeigtes Ressort: </h3> -->
+
+        <p>Angezeigtes Ressort: <mark class="angezeigtesRessort"></mark></p>
+        <p class="waehlbareRessorts">Wählbare Ressorts: </p>
+        <div id="ressorts">
+
+        </div>
+        <p class="ausgeblendeteTags">Blockierte Schlagworte: </p>
     </div>
-    <h3 class="ausgeblendeteTags">Blockierte Schlagworte: </h3>
-    <h3 class="gelb"></h3>
-    <h3 class="rot"></h3>
+
+    <!-- <h3 class="gelb"></h3>
+    <h3 class="rot"></h3> -->
 
     <hr>
     <hr>
@@ -48,6 +67,7 @@
         <p>Tag <em id="derBlacklistTag"></em> aus Blacklist rausnehmen?</p>
         <p><input type="submit" value="OK" id="tagRausAusBlacklist"></p>
     </dialog>
+
     <script>
         "use strict";
 
