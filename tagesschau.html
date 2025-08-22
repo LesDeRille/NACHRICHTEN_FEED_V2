@@ -40,7 +40,6 @@
 
         <h1>Tagesschau</h1>
         <!-- leere Überschrift, wird in der Programmsteuerung befüllt -->
-        <!-- <h3 class="angezeigtesRessort">Angezeigtes Ressort: </h3> -->
 
         <p>Angezeigtes Ressort: <mark class="angezeigtesRessort"></mark></p>
         <p class="waehlbareRessorts">Wählbare Ressorts: </p>
@@ -49,9 +48,6 @@
         </div>
         <p class="ausgeblendeteTags">Blockierte Schlagworte: </p>
     </div>
-
-    <!-- <h3 class="gelb"></h3>
-    <h3 class="rot"></h3> -->
 
     <hr>
     <hr>
@@ -95,7 +91,6 @@
 
         function blacklistAusgabeortReset() {
             while (blacklistAusgabeort[0].firstChild) {
-                console.log(blacklistAusgabeort[0].firstChild)
                 blacklistAusgabeort[0].removeChild(blacklistAusgabeort[0].firstChild)
             }
             blacklistAusgabeort[0].textContent = "Blockierte Schlagworte: "
@@ -108,23 +103,7 @@
             inLocalStorageAblegen("Blacklist", blacklist);
             tagDialog.close();
             bisherigeSchlagzeilenLoeschen();
-            // machAusgeblendeteTagsString(gewaehltesRessort);
-            // startRessort[0].textContent = ausgeblendeteTagsString;
-            // machButtonAusTag(blacklist);
-            // console.log(startRessort[0])
-            // machButtonAusTag(blacklist, startRessort[0], blacklistTagDialog, gewaehlterBlacklistTag);
-
-            // console.log("ss", blacklistAusgabeort[0].children);
-            // console.log("vv", blacklistAusgabeort[0]);
-            // console.log("tt", blacklistAusgabeort[0].firstChild);
-            // for (let i of blacklistAusgabeort[0].children) {
-            //     console.log(i)
-            //     // blacklistAusgabeort[0].removeChild(i);
-            // }
-            // blacklistAusgabeort leeren, wird in 'machButtonAusTag' neu befüllt
             blacklistAusgabeortReset()
-            // console.log("xx", blacklistAusgabeort[0].children);
-            // console.log(blacklist)
             machButtonAusTag(blacklist, blacklistAusgabeort[0], blacklistTagDialog, gewaehlterBlacklistTag);
             urlLesen();
         });
@@ -137,23 +116,13 @@
             inLocalStorageAblegen("Blacklist", blacklist);
             blacklistTagDialog.close();
             bisherigeSchlagzeilenLoeschen();
-            // machAusgeblendeteTagsString(gewaehltesRessort);
-            // startRessort[0].textContent = ausgeblendeteTagsString;
-            // machButtonAusTag(blacklist);
-            // while (blacklistAusgabeort[0].firstChild) {
-            //     // console.log(blacklistAusgabeort[0].firstChild)
-            //     blacklistAusgabeort[0].removeChild(blacklistAusgabeort[0].firstChild)
-            // }
-            // blacklistAusgabeort[0].textContent = "Blockierte Schlagworte: "
             blacklistAusgabeortReset()
-            // machButtonAusTag(blacklist, startRessort[0], blacklistTagDialog, gewaehlterBlacklistTag);
             machButtonAusTag(blacklist, blacklistAusgabeort[0], blacklistTagDialog, gewaehlterBlacklistTag);
             urlLesen();
         });
 
         let gewaehlterTag = document.getElementById("derTag");
         let gewaehlterBlacklistTag = document.getElementById("derBlacklistTag");
-        // console.log(gewaehlterTag)
 
 
         function neueSchlagzeileErzeugen(meldung) {
@@ -178,20 +147,6 @@
                 // Bausteine der Schlagzeile an neues Listenelement anhängen
                 neuerTitel.appendChild(neuerAnker);
                 neuerTitel.appendChild(datum);
-
-                // Tags der Meldung als Buttons ausgeben
-                // for (let einzelnerTag of alleTagsDerMeldung) {
-                //     let tagButton = document.createElement("button");
-                //     tagButton.textContent = einzelnerTag;
-                //     neuerTitel.appendChild(tagButton);
-
-                //     // Rechtsklick auf Ressort-Tag-Button verarbeiten
-                //     tagButton.oncontextmenu = function (event) {
-                //         event.preventDefault();
-                //         gewaehlterTag.textContent = tagButton.textContent;
-                //         tagDialog.showModal();
-                //     }
-                // }
                 machButtonAusTag(alleTagsDerMeldung, neuerTitel, tagDialog, gewaehlterTag);
 
                 // Bausteine der Schlagzeile an document anhängen
@@ -240,7 +195,6 @@
 
         let gewaehltesRessort;
         function ressortButtonsErzeugen() {
-            // let knopfPosition = document.getElementById("ressorts");
             let knopfPosition = document.getElementsByClassName("waehlbareRessorts");
 
             for (let ressort of ressorts) {
@@ -248,10 +202,8 @@
                 ressortButton.textContent = ressort;
                 ressortButton.style.fontSize = "100%"
 
-                // knopfPosition.appendChild(ressortButton)
                 knopfPosition[0].appendChild(ressortButton)
                 ressortButton.addEventListener("click", () => {
-                    // let ressortDatum = JSON.parse(localStorage.getItem("Ressortaufrufe"));
                     let ressortDatum = JSON.parse(localStorage.getItem("datenNachrichtenFeed")).Ressortaufrufe;
                     letzterAufrufDesRessorts = ressortDatum[ressortButton.textContent];
                     // Aktualisierung des Aufrufdatums des aktuellen Ressorts
@@ -259,13 +211,9 @@
                     inLocalStorageAblegen("Ressortaufrufe", ressortDatum);
 
                     gewaehltesRessort = ressortButton.textContent // gewaehltesRessort brauche ich global
-                    console.log(ressortButton.textContent)
                     machAusgeblendeteTagsString(gewaehltesRessort);
-                    // startRessort[0].textContent = ausgeblendeteTagsString;
                     startRessort[0].textContent = gewaehltesRessort;
                     bisherigeSchlagzeilenLoeschen();
-                    // machButtonAusTag(blacklist);
-                    // machButtonAusTag(blacklist, startRessort[0], blacklistTagDialog, gewaehlterBlacklistTag);
                     urlLesen(ressortButton.textContent);
                 })
             }
@@ -277,19 +225,15 @@
             for (let einzelnerTag of tagArray) {
                 let tagButton = document.createElement("button");
                 tagButton.textContent = einzelnerTag;
-                // startRessort[0].appendChild(tagButton);
                 buttonAusgabeort.appendChild(tagButton);
 
                 // Rechtsklick auf BlacklistButton verarbeiten
                 // anhand tagDialog unterscheidbar
                 tagButton.oncontextmenu = function (event) {
                     event.preventDefault();
-                    // gewaehlterBlacklistTag.textContent = tagButton.textContent;
                     tagAuswahl.textContent = tagButton.textContent;
-                    // blacklistTagDialog.showModal();
                     dialogID.showModal();
                 }
-                // Rechtsklick auf Ressort-Tag-Button verarbeiten sollte hier noch rein
             }
         }
 
@@ -301,7 +245,6 @@
             inhaltVonLocalStorage[datenname] = daten;
 
             localStorage.setItem("datenNachrichtenFeed", JSON.stringify(inhaltVonLocalStorage));
-            // let datencheck = JSON.parse(localStorage.getItem("datenNachrichtenFeed"));
         }
 
 
@@ -313,7 +256,6 @@
 
         let letzterAufrufDesRessorts;
         let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
-        // const letzteAufrufe = JSON.parse(localStorage.getItem("Ressortaufrufe"));
         const letzteAufrufe = JSON.parse(localStorage.getItem("datenNachrichtenFeed")).Ressortaufrufe;
         try {
             Object.keys(letzteAufrufe).length > 0;
@@ -331,16 +273,10 @@
         let ausgeblendeteTagsString;
         machAusgeblendeteTagsString("Sport");
 
-        // let startRessort = document.getElementsByTagName("h3");
         let startRessort = document.getElementsByClassName("angezeigtesRessort");
-        console.log(startRessort[0].textContent)
-        // startRessort[0].textContent = ausgeblendeteTagsString;
         startRessort[0].textContent += "Sport";
-        // machButtonAusTag(blacklist);
         let blacklistAusgabeort = document.getElementsByClassName("ausgeblendeteTags");
-        console.log(blacklistAusgabeort)
 
-        // machButtonAusTag(blacklist, startRessort[0], blacklistTagDialog, gewaehlterBlacklistTag);
         machButtonAusTag(blacklist, blacklistAusgabeort[0], blacklistTagDialog, gewaehlterBlacklistTag);
 
 
