@@ -115,8 +115,10 @@
             // }
             // blacklistAusgabeort leeren, wird in 'machButtonAusTag' neu befüllt
             while (blacklistAusgabeort[0].firstChild) {
+                console.log(blacklistAusgabeort[0].firstChild)
                 blacklistAusgabeort[0].removeChild(blacklistAusgabeort[0].firstChild)
             }
+            blacklistAusgabeort[0].textContent = "Blockierte Schlagworte: "
             // console.log("xx", blacklistAusgabeort[0].children);
             // console.log(blacklist)
             machButtonAusTag(blacklist, blacklistAusgabeort[0], blacklistTagDialog, gewaehlterBlacklistTag);
