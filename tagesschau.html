@@ -245,7 +245,9 @@
 
             for (let ressort of ressorts) {
                 let ressortButton = document.createElement("button");
-                ressortButton.textContent = ressort
+                ressortButton.textContent = ressort;
+                ressortButton.style.fontSize = "100%"
+
                 // knopfPosition.appendChild(ressortButton)
                 knopfPosition[0].appendChild(ressortButton)
                 ressortButton.addEventListener("click", () => {
