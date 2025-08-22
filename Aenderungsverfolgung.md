@@ -1,6 +1,29 @@
 ## Änderungshistorie
 
 #
+### tagesschau_2025_08_22_V03
+
+#### Basis: tagesschau_2025_08_22_V02
+
+#### Änderung:
+* Alle Titelzeilen wieder in Ordnung
+
+#### ToDo:
+* Speicherung des letzten Ressortaufrufs scheint nicht mehr zu funktionieren
+* Optisch aufbereiten
+* gelesene markieren
+* Refresh-Knopf (oder einfach neu laden?)
+* Geht auch die ganze Meldung einzufärben? Jetzt, wo ich es verstanden habe?
+* localStorage exportieren, damit ich es auf dem iPad oder einem anderen Browser einlesen kann
+* nutze ich überhaupt alle vorhandenen ressorts? Bis jetzt sind die fest vorgegeben. Kann ich die Ressorts dynamisch festlegen? Es könnten ja auch mal welche dazukommen
+* Füge ich gleich nach dem Start der App einen Tag zur Blacklist hinzu, steht in <h3> kein Ressortname mehr
+* Handling prüfen. Manchmal wechselt er des Ressort, wenn man die Tags ändert
+* Die ausgeblendeten Tags gehören nicht hinter das Ressort. Sie gelten ja generell für alle Ressorts
+* Es ist bestimmt einiges drin, was gar nicht mehr begraucht wird
+* Bei der Behandlung der Rechtsklicks klappt die neue Optik noch nicht
+
+
+#
 ### tagesschau_2025_08_22_V02
 
 #### Basis: tagesschau_2025_08_22_V01

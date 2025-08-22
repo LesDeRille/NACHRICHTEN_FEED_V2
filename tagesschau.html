@@ -93,6 +93,14 @@
             ausgeblendeteTagsString = reso + " (Ausgeblendete Tags: ";
         }
 
+        function blacklistAusgabeortReset() {
+            while (blacklistAusgabeort[0].firstChild) {
+                console.log(blacklistAusgabeort[0].firstChild)
+                blacklistAusgabeort[0].removeChild(blacklistAusgabeort[0].firstChild)
+            }
+            blacklistAusgabeort[0].textContent = "Blockierte Schlagworte: "
+        }
+
         // Hier kommt die Verarbeitung des Klicks auf den 'OK' Button im 'tagDialog'
         // Mit 'OK' wird der Tag auf die Blacklist geschrieben
         tagAufBlacklist.addEventListener("click", () => {
@@ -114,11 +122,7 @@
             //     // blacklistAusgabeort[0].removeChild(i);
             // }
             // blacklistAusgabeort leeren, wird in 'machButtonAusTag' neu befüllt
-            while (blacklistAusgabeort[0].firstChild) {
-                console.log(blacklistAusgabeort[0].firstChild)
-                blacklistAusgabeort[0].removeChild(blacklistAusgabeort[0].firstChild)
-            }
-            blacklistAusgabeort[0].textContent = "Blockierte Schlagworte: "
+            blacklistAusgabeortReset()
             // console.log("xx", blacklistAusgabeort[0].children);
             // console.log(blacklist)
             machButtonAusTag(blacklist, blacklistAusgabeort[0], blacklistTagDialog, gewaehlterBlacklistTag);
@@ -133,10 +137,17 @@
             inLocalStorageAblegen("Blacklist", blacklist);
             blacklistTagDialog.close();
             bisherigeSchlagzeilenLoeschen();
-            machAusgeblendeteTagsString(gewaehltesRessort);
-            startRessort[0].textContent = ausgeblendeteTagsString;
+            // machAusgeblendeteTagsString(gewaehltesRessort);
+            // startRessort[0].textContent = ausgeblendeteTagsString;
             // machButtonAusTag(blacklist);
-            machButtonAusTag(blacklist, startRessort[0], blacklistTagDialog, gewaehlterBlacklistTag);
+            // while (blacklistAusgabeort[0].firstChild) {
+            //     // console.log(blacklistAusgabeort[0].firstChild)
+            //     blacklistAusgabeort[0].removeChild(blacklistAusgabeort[0].firstChild)
+            // }
+            // blacklistAusgabeort[0].textContent = "Blockierte Schlagworte: "
+            blacklistAusgabeortReset()
+            // machButtonAusTag(blacklist, startRessort[0], blacklistTagDialog, gewaehlterBlacklistTag);
+            machButtonAusTag(blacklist, blacklistAusgabeort[0], blacklistTagDialog, gewaehlterBlacklistTag);
             urlLesen();
         });
 
