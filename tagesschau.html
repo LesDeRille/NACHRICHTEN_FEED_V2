@@ -106,13 +106,19 @@
             // console.log(startRessort[0])
             // machButtonAusTag(blacklist, startRessort[0], blacklistTagDialog, gewaehlterBlacklistTag);
 
-            console.log("ss", blacklistAusgabeort[0].children);
-            for (let i of blacklistAusgabeort[0].children) {
-                console.log(i)
-                // blacklistAusgabeort[0].removeChild(i);
+            // console.log("ss", blacklistAusgabeort[0].children);
+            // console.log("vv", blacklistAusgabeort[0]);
+            // console.log("tt", blacklistAusgabeort[0].firstChild);
+            // for (let i of blacklistAusgabeort[0].children) {
+            //     console.log(i)
+            //     // blacklistAusgabeort[0].removeChild(i);
+            // }
+            // blacklistAusgabeort leeren, wird in 'machButtonAusTag' neu befüllt
+            while (blacklistAusgabeort[0].firstChild) {
+                blacklistAusgabeort[0].removeChild(blacklistAusgabeort[0].firstChild)
             }
-            console.log("xx", blacklistAusgabeort[0].children);
-            console.log(blacklist)
+            // console.log("xx", blacklistAusgabeort[0].children);
+            // console.log(blacklist)
             machButtonAusTag(blacklist, blacklistAusgabeort[0], blacklistTagDialog, gewaehlterBlacklistTag);
             urlLesen();
         });
