@@ -195,15 +195,17 @@
 
         let gewaehltesRessort;
         function ressortButtonsErzeugen() {
+
             let knopfPosition = document.getElementsByClassName("waehlbareRessorts");
 
             for (let ressort of ressorts) {
                 let ressortButton = document.createElement("button");
                 ressortButton.textContent = ressort;
-                ressortButton.style.fontSize = "100%"
+                console.log(ressortButton)
 
                 knopfPosition[0].appendChild(ressortButton)
                 ressortButton.addEventListener("click", () => {
+
                     let ressortDatum = JSON.parse(localStorage.getItem("datenNachrichtenFeed")).Ressortaufrufe;
                     letzterAufrufDesRessorts = ressortDatum[ressortButton.textContent];
                     // Aktualisierung des Aufrufdatums des aktuellen Ressorts
@@ -211,10 +213,21 @@
                     inLocalStorageAblegen("Ressortaufrufe", ressortDatum);
 
                     gewaehltesRessort = ressortButton.textContent // gewaehltesRessort brauche ich global
-                    machAusgeblendeteTagsString(gewaehltesRessort);
+
+                    // Für alle Buttons Buttongröße Reset
+                    let schnulli = document.getElementsByClassName("waehlbareRessorts");
+                    for (let i of schnulli[0].children) {
+                        i.style.fontSize = "100%"
+                    }
+
+                    // gewählten Button vergrößern
+                    ressortButton.style.fontSize = "150%"
+
                     startRessort[0].textContent = gewaehltesRessort;
                     bisherigeSchlagzeilenLoeschen();
                     urlLesen(ressortButton.textContent);
+
+
                 })
             }
         }
