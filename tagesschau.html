@@ -7,6 +7,14 @@
 </head>
 
 <style>
+    button {
+        border-radius: 10px;
+        border: 1px solid #000;
+        color: black;
+        background-color: white;
+        font-size: small;
+    }
+
     mark {
         background: white;
         font-weight: bold;
@@ -32,6 +40,7 @@
         background-color: rgb(233, 130, 19);
         color: rgb(255, 255, 255);
         padding: 3px;
+        /* font-size: small; */
     }
 </style>
 
@@ -204,6 +213,7 @@
                 console.log(ressortButton)
 
                 knopfPosition[0].appendChild(ressortButton)
+                console.log("bb", ressortButton.style)
                 ressortButton.addEventListener("click", () => {
 
                     let ressortDatum = JSON.parse(localStorage.getItem("datenNachrichtenFeed")).Ressortaufrufe;
@@ -217,11 +227,13 @@
                     // Für alle Buttons Buttongröße Reset
                     let schnulli = document.getElementsByClassName("waehlbareRessorts");
                     for (let i of schnulli[0].children) {
-                        i.style.fontSize = "100%"
+                        i.style.fontSize = "small"
+                        // i.style.borderRadius = "2px"
                     }
 
                     // gewählten Button vergrößern
-                    ressortButton.style.fontSize = "150%"
+                    ressortButton.style.fontSize = "x-large";
+                    // ressortButton.style.borderRadius = "10px"
 
                     startRessort[0].textContent = gewaehltesRessort;
                     bisherigeSchlagzeilenLoeschen();
