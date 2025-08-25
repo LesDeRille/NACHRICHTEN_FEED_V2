@@ -74,7 +74,7 @@
         <h1>Tagesschau</h1>
         <!-- leere Überschrift, wird in der Programmsteuerung befüllt -->
 
-        <p>Angezeigtes Ressort: <mark class="angezeigtesRessort"></mark></p>
+        <!-- <p>Angezeigtes Ressort: <mark class="angezeigtesRessort"></mark></p> -->
         <p class="waehlbareRessorts">Wählbare Ressorts: </p>
         <div id="ressorts">
 
@@ -227,15 +227,17 @@
 
 
         let gewaehltesRessort;
-        function ressortButtonsErzeugen() {
+        function ressortButtonsErzeugen(uebergaberressort) {
 
             let knopfPosition = document.getElementsByClassName("waehlbareRessorts");
 
             for (let ressort of ressorts) {
                 let ressortButton = document.createElement("button");
                 ressortButton.textContent = ressort;
-                ressortButton.className = "resobutt"
-
+                ressortButton.className = "resobutt";
+                if (ressort == uebergaberressort) {
+                    ressortButton.style.fontSize = "x-large"
+                }
                 knopfPosition[0].appendChild(ressortButton)
                 ressortButton.addEventListener("click", () => {
 
@@ -258,11 +260,9 @@
                     ressortButton.style.fontSize = "x-large";
                     // ressortButton.style.borderRadius = "10px"
 
-                    startRessort[0].textContent = gewaehltesRessort;
+                    // startRessort[0].textContent = gewaehltesRessort;
                     bisherigeSchlagzeilenLoeschen();
                     urlLesen(ressortButton.textContent);
-
-
                 })
             }
         }
@@ -303,7 +303,7 @@
         // Programmsteuerung
         // #####################################
 
-
+        let defaultressort = "Sport"
         let letzterAufrufDesRessorts;
         let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
         const letzteAufrufe = JSON.parse(localStorage.getItem("datenNachrichtenFeed")).Ressortaufrufe;
@@ -323,8 +323,9 @@
         // let ausgeblendeteTagsString;
         // machAusgeblendeteTagsString("Sport");
 
-        let startRessort = document.getElementsByClassName("angezeigtesRessort");
-        startRessort[0].textContent += "Sport";
+        // let startRessort = document.getElementsByClassName("angezeigtesRessort");
+        // startRessort[0].textContent = "Sport";
+        // startRessort[0].textContent = defaultressort;
         let blacklistAusgabeort = document.getElementsByClassName("ausgeblendeteTags");
 
         machButtonAusTag(blacklist, blacklistAusgabeort[0], blacklistTagDialog, gewaehlterBlacklistTag, "blackTag");
@@ -332,7 +333,8 @@
 
 
         function weiterImNormalenModus() {
-            letzterAufrufDesRessorts = letzteAufrufe["Sport"]
+            // letzterAufrufDesRessorts = letzteAufrufe["Sport"]
+            letzterAufrufDesRessorts = letzteAufrufe[defaultressort]
         }
 
         function weiterImPrivatenModus() {
@@ -349,7 +351,7 @@
         }
 
         urlLesen();
-        ressortButtonsErzeugen();
+        ressortButtonsErzeugen(defaultressort);
 
     </script>
 </body>
