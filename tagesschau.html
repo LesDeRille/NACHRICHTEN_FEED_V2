@@ -139,7 +139,7 @@
             bisherigeSchlagzeilenLoeschen();
             blacklistAusgabeortReset()
             machButtonAusTag(blacklist, blacklistAusgabeort[0], blacklistTagDialog, gewaehlterBlacklistTag, "blackTag");
-            urlLesen();
+            urlLesen(gewaehltesRessort);
         });
 
         // Hier kommt die Verarbeitung des Klicks auf den 'OK' Button im 'blacklistTagDialog'
@@ -152,7 +152,7 @@
             bisherigeSchlagzeilenLoeschen();
             blacklistAusgabeortReset()
             machButtonAusTag(blacklist, blacklistAusgabeort[0], blacklistTagDialog, gewaehlterBlacklistTag, "blackTag");
-            urlLesen();
+            urlLesen(gewaehltesRessort);
         });
 
         let gewaehlterTag = document.getElementById("derTag");
