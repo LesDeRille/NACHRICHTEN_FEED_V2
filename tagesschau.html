@@ -90,11 +90,11 @@
     </dl>
 
     <dialog id="tagDialog">
-        <p>Tag <em id="derTag"></em> auf Blacklist?</p>
+        <p>Schlagwort <em id="derTag"></em> auf Blacklist setzen?</p>
         <p><input type="submit" value="OK" id="tagAufBlacklist"></p>
     </dialog>
     <dialog id="blacklistTagDialog">
-        <p>Tag <em id="derBlacklistTag"></em> aus Blacklist rausnehmen?</p>
+        <p>Schlagwort <em id="derBlacklistTag"></em> aus Blacklist rausnehmen?</p>
         <p><input type="submit" value="OK" id="tagRausAusBlacklist"></p>
     </dialog>
 
@@ -227,7 +227,6 @@
         }
 
 
-        let gewaehltesRessort;
         function ressortButtonsErzeugen(uebergaberressort) {
 
             let knopfPosition = document.getElementsByClassName("waehlbareRessorts");
@@ -303,8 +302,9 @@
         // #####################################
         // Programmsteuerung
         // #####################################
+        // let gewaehltesRessort;
 
-        let defaultressort = "Sport"
+        let gewaehltesRessort = "Sport"
         let letzterAufrufDesRessorts;
         let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
         const letzteAufrufe = JSON.parse(localStorage.getItem("datenNachrichtenFeed")).Ressortaufrufe;
@@ -335,7 +335,7 @@
 
         function weiterImNormalenModus() {
             // letzterAufrufDesRessorts = letzteAufrufe["Sport"]
-            letzterAufrufDesRessorts = letzteAufrufe[defaultressort]
+            letzterAufrufDesRessorts = letzteAufrufe[gewaehltesRessort]
         }
 
         function weiterImPrivatenModus() {
@@ -352,7 +352,7 @@
         }
 
         urlLesen();
-        ressortButtonsErzeugen(defaultressort);
+        ressortButtonsErzeugen(gewaehltesRessort);
 
     </script>
 </body>
