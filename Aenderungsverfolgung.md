@@ -1,6 +1,22 @@
 ## Änderungshistorie
 
 #
+### tagesschau_2025_08_27_V02
+
+#### Basis: tagesschau_2025_08_27_V01
+
+#### Änderung:
+* Lesen aus localStorage mit try-catch abgesichert
+
+#### ToDo:
+* Refresh-Knopf (oder einfach neu laden?)
+* Geht auch die ganze Meldung einzufärben? Jetzt, wo ich es verstanden habe?
+* localStorage exportieren, damit ich es auf dem iPad oder einem anderen Browser einlesen kann
+* nutze ich überhaupt alle vorhandenen ressorts? Bis jetzt sind die fest vorgegeben. Kann ich die Ressorts dynamisch festlegen? Es könnten ja auch mal welche dazukommen
+* Es ist bestimmt einiges drin, was gar nicht mehr gebraucht wird
+
+
+#
 ### tagesschau_2025_08_27_V01
 
 #### Basis: tagesschau_2025_08_26_V03
