@@ -308,6 +308,7 @@
         let letzterAufrufDesRessorts;
         let ressorts = ["Inland", "Ausland", "Wirtschaft", "Sport", "Wissen", "Investigativ"];
         const letzteAufrufe = JSON.parse(localStorage.getItem("datenNachrichtenFeed")).Ressortaufrufe;
+        console.log(letzteAufrufe)
         try {
             Object.keys(letzteAufrufe).length > 0;
             weiterImNormalenModus();
@@ -319,6 +320,9 @@
 
         // Blacklist aus localStorage lesen
         let blacklist = JSON.parse(localStorage.getItem("datenNachrichtenFeed")).Blacklist;
+        if (blacklist == null) {
+            blacklist = [];
+        }
 
         // Wofür sind diese beiden Zeilen? Braucht's die noch?
         // let ausgeblendeteTagsString;
