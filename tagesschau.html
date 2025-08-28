@@ -312,8 +312,11 @@
             letzteAufrufe = JSON.parse(localStorage.getItem("datenNachrichtenFeed")).Ressortaufrufe;
         }
         catch {
-            alert("da stimmt was nicht")
+            // leeren localStorage .Ressortaufrufe anlegen
+            // alert("da stimmt was nicht");
+            weiterImPrivatenModus();
         }
+
         try {
             Object.keys(letzteAufrufe).length > 0;
             weiterImNormalenModus();
@@ -329,9 +332,10 @@
             blacklist = JSON.parse(localStorage.getItem("datenNachrichtenFeed")).Blacklist;
         }
         catch {
-            alert("da stimmt was nicht mit der Blacklist")
+            alert("da stimmt was nicht mit der Blacklist");
+            inLocalStorageAblegen("Blacklist", [])
         }
-     
+
         // if (blacklist == null) {
         //     blacklist = [];
         // }
@@ -358,9 +362,11 @@
             // Wenn noch keineDaten auf localStorage stehen, weil das Programm zum ersten Mal gestartet wird,
             // oder weil Safari im privaten Modus nicht aus localStorage lesen kann,
             // werden hier für jedes Ressort Startdaten erstellt
+            let dummyDaten = { "Ressortaufrufe": [1, 2, 3], "Blacklist": [] }
+            localStorage.setItem("datenNachrichtenFeed", JSON.stringify(dummyDaten))
             const startdatum = new Date("1970-01-01");
             let ressortDatum = {};
-            for (ressort of ressorts) {
+            for (let ressort of ressorts) {
                 ressortDatum[ressort] = startdatum;
                 inLocalStorageAblegen("Ressortaufrufe", ressortDatum);
             }
